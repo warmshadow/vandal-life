@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Text from '$lib/Text';
+
 	export let src: string;
 	export let title: string;
 	export let description: string;
@@ -9,10 +11,10 @@
 	<div class="img-container" style="background-image: url({src})" />
 	<div class="content">
 		<div class="text-block">
-			<h1>{title}</h1>
-			<p>{description}</p>
+			<Text.Heading6 type="bold">{title}</Text.Heading6>
+			<Text.Body>{description}</Text.Body>
 		</div>
-		<a href={link}>Read more</a>
+		<a href={link}><Text.Body type="underlined" link>Read more</Text.Body></a>
 	</div>
 </div>
 
