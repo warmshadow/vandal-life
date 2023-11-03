@@ -36,6 +36,7 @@
 	.img-container {
 		border-radius: 12px;
 		height: 196px;
+		flex-shrink: 0;
 
 		background-position: center;
 		background-repeat: no-repeat;

@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import Card from '$lib/Card.svelte';
+import CardDecorator from './decorators/CardDecorator.svelte';
 
 import placeholder from './assets/placeholder.png';
 
 const meta = {
 	title: 'Components/Card',
-	component: Card
+	component: Card,
+	decorators: [(): any => CardDecorator]
 } satisfies Meta<Card>;
 
 export default meta;
