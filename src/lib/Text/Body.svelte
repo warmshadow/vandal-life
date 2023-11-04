@@ -14,11 +14,12 @@
 
 <svelte:element
 	this={link ? 'span' : 'p'}
+	class="text"
 	style="--font-weight: {fontWeight}; --text-decoration: {textDecoration}"><slot /></svelte:element
 >
 
 <style>
-	p {
+	.text {
 		font-size: 16px;
 		font-weight: var(--font-weight);
 		line-height: 24px;
