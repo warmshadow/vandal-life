@@ -2,18 +2,22 @@
 	import Text from '$lib/Text';
 	import Link from '$lib/Link.svelte';
 
-	export let src: string;
+	export let src: string | undefined = undefined;
 	export let title: string;
-	export let description: string;
+	export let description: string | undefined = undefined;
 	export let link: string;
 </script>
 
 <div class="container">
-	<div class="img-container" style="background-image: url({src})" />
+	{#if !!src}
+		<div class="img-container" style="background-image: url({src})" />
+	{/if}
 	<div class="content">
 		<div class="text-block">
 			<Text.Heading6 type="bold">{title}</Text.Heading6>
-			<Text.Body>{description}</Text.Body>
+			{#if !!description}
+				<Text.Body>{description}</Text.Body>
+			{/if}
 		</div>
 		<Link {link} />
 	</div>
@@ -50,7 +54,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		row-gap: 8px;
+		row-gap: 24px;
 	}
 
 	.text-block {
@@ -65,7 +69,6 @@
 			row-gap: 24px;
 		}
 
-		.content,
 		.text-block {
 			row-gap: 16px;
 		}

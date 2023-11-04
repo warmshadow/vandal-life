@@ -24,3 +24,10 @@ export const Default: Story = {
 		link: '/'
 	}
 };
+
+export const Small: Story = {
+	args: {
+		title: 'Lorem ipsum dolor sit amet consectetur. Commodo varius morbi platea metus.',
+		link: '/'
+	}
+};
