@@ -7,6 +7,7 @@ import placeholder from './assets/placeholder.png';
 const meta = {
 	title: 'Components/Card',
 	component: Card,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	decorators: [(): any => CardDecorator]
 } satisfies Meta<Card>;
 

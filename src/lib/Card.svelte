@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Text from '$lib/Text';
+	import Link from '$lib/Link.svelte';
 
 	export let src: string;
 	export let title: string;
@@ -14,7 +15,7 @@
 			<Text.Heading6 type="bold">{title}</Text.Heading6>
 			<Text.Body>{description}</Text.Body>
 		</div>
-		<a href={link}><Text.Body type="underlined" link>Read more</Text.Body></a>
+		<Link {link} />
 	</div>
 </div>
 
