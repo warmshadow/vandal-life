@@ -33,7 +33,7 @@
 		max-height: 464px;
 
 		border-radius: 20px;
-		border: 1px solid #000000;
+		border: 1px solid var(--black);
 	}
 
 	.img-container {
