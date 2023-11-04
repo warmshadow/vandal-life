@@ -24,11 +24,11 @@ const actionsData = {
 
 export const Default = Template.bind({});
 Default.args = {
-	title: 'Button with on:click'
+	label: 'Button with on:click'
 };
 
 export const ButtonLink = Template.bind({});
 ButtonLink.args = {
-	title: "I'm a link styled like button",
+	label: "I'm a link styled like button",
 	link: '/'
 };

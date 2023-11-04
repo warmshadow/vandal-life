@@ -1,16 +1,16 @@
 <script lang="ts">
 	import Text from '$lib/Text';
 
-	export let title: string;
+	export let label: string;
 	export let link: string | undefined = undefined;
 </script>
 
 {#if !!link}
 	<a href={link}>
-		<span class="button"><Text.Body link>{title}</Text.Body></span>
+		<span class="button"><Text.Body link>{label}</Text.Body></span>
 	</a>
 {:else}
-	<button on:click class="button"><Text.Body link>{title}</Text.Body></button>
+	<button on:click class="button"><Text.Body link>{label}</Text.Body></button>
 {/if}
 
 <style>
