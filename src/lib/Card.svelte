@@ -58,4 +58,16 @@
 		flex-direction: column;
 		row-gap: 8px;
 	}
+
+	@media (min-width: 1460px) {
+		.container {
+			padding: 24px;
+			row-gap: 24px;
+		}
+
+		.content,
+		.text-block {
+			row-gap: 16px;
+		}
+	}
 </style>
