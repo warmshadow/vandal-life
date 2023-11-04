@@ -1,5 +1,10 @@
 <script lang="ts">
+	import { colors } from '$lib/utils/colors';
+
+	export let color: keyof typeof colors = 'black';
 	export let type: 'default' | 'underlined' | 'medium' = 'default';
+	export let link: boolean = false;
+
 	const weights = {
 		default: 400,
 		medium: 500
@@ -9,14 +14,10 @@
 	const fontWeight: (typeof weights)[keyof typeof weights] =
 		weights[type === 'underlined' ? 'default' : type];
 
-	export let link: boolean = false;
+	$: style = `--text-color: ${colors[color]}; --font-weight: ${fontWeight}; --text-decoration: ${textDecoration};`;
 </script>
 
-<svelte:element
-	this={link ? 'span' : 'p'}
-	class="text"
-	style="--font-weight: {fontWeight}; --text-decoration: {textDecoration}"><slot /></svelte:element
->
+<svelte:element this={link ? 'span' : 'p'} class="text" {style}><slot /></svelte:element>
 
 <style>
 	.text {
@@ -25,6 +26,6 @@
 		line-height: 24px;
 		text-decoration: var(--text-decoration);
 
-		color: var(--black);
+		color: var(--text-color);
 	}
 </style>

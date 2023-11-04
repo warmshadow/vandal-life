@@ -1,4 +1,12 @@
-<h3><slot /></h3>
+<script lang="ts">
+	import { colors } from '$lib/utils/colors';
+
+	export let color: keyof typeof colors = 'black';
+
+	$: style = `--text-color: ${colors[color]};`;
+</script>
+
+<h3 {style}><slot /></h3>
 
 <style>
 	h3 {
@@ -6,6 +14,6 @@
 		font-weight: 800;
 		line-height: 56px;
 
-		color: var(--black);
+		color: var(--text-color);
 	}
 </style>
