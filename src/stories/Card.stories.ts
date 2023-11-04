@@ -21,13 +21,13 @@ export const Default: Story = {
 		title: 'Lorem ipsum dolor sit amet consectetur. Commodo varius morbi platea metus.',
 		description:
 			'Besamma treskade turistkorridor såsom mora atovis. Mobilzombie heteronussa och surer dengar dekrongar...',
-		link: '/'
+		link: { to: '/' }
 	}
 };
 
 export const Small: Story = {
 	args: {
 		title: 'Lorem ipsum dolor sit amet consectetur. Commodo varius morbi platea metus.',
-		link: '/'
+		link: { to: '/' }
 	}
 };

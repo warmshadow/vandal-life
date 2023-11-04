@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Text from './Text';
 
-	export let link: string;
+	export let to: string;
+	export let label: string = 'Read more';
 </script>
 
-<a href={link}><Text.Body link>Read more</Text.Body></a>
+<a href={to}><Text.Body link>{label}</Text.Body></a>
 
 <style>
 	a {

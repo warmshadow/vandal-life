@@ -1,11 +1,12 @@
 <script lang="ts">
 	import Text from '$lib/Text';
 	import Link from '$lib/Link.svelte';
+	import type { ComponentProps } from 'svelte';
 
 	export let src: string | undefined = undefined;
 	export let title: string;
 	export let description: string | undefined = undefined;
-	export let link: string;
+	export let link: ComponentProps<Link>;
 </script>
 
 <div class="container">
@@ -19,7 +20,7 @@
 				<Text.Body>{description}</Text.Body>
 			{/if}
 		</div>
-		<Link {link} />
+		<Link {...link} />
 	</div>
 </div>
 

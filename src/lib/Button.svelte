@@ -10,7 +10,7 @@
 		<span class="button"><Text.Body link>{title}</Text.Body></span>
 	</a>
 {:else}
-	<button class="button"><Text.Body link>{title}</Text.Body></button>
+	<button on:click class="button"><Text.Body link>{title}</Text.Body></button>
 {/if}
 
 <style>
