@@ -4,6 +4,14 @@
 	padding: 0;
 }
 
+:root {
+	--primary: #ea3323;
+	--black: #000000;
+	--grey: #949494;
+	--light-grey: #e1e1e1;
+	--white: #ffffff;
+}
+
 html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;

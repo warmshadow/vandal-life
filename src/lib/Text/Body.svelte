@@ -23,5 +23,7 @@
 		font-weight: var(--font-weight);
 		line-height: 24px;
 		text-decoration: var(--text-decoration);
+
+		color: var(--black);
 	}
 </style>

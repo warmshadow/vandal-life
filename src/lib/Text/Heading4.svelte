@@ -6,5 +6,7 @@
 		font-weight: 700;
 		line-height: 48px;
 		letter-spacing: -1.71px;
+
+		color: var(--black);
 	}
 </style>

@@ -5,5 +5,7 @@
 		font-size: 48px;
 		font-weight: 800;
 		line-height: 56px;
+
+		color: var(--black);
 	}
 </style>
