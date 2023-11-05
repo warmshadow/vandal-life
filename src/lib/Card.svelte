@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Text from '$lib/Text';
+	import Text from '$lib/Text.svelte';
 	import Link from '$lib/Link.svelte';
 	import type { ComponentProps } from 'svelte';
 
@@ -15,9 +15,9 @@
 	{/if}
 	<div class="content">
 		<div class="text-block">
-			<Text.Heading6 type="bold">{title}</Text.Heading6>
+			<Text tag="h6" type="bold">{title}</Text>
 			{#if !!description}
-				<Text.Body>{description}</Text.Body>
+				<Text tag="p">{description}</Text>
 			{/if}
 		</div>
 		<Link {...link} />

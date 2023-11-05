@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Text from './Text';
-
 	export let to: string;
 	export let label: string = 'Read more';
 </script>

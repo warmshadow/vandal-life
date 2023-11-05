@@ -24,9 +24,6 @@
 
 	.button:hover {
 		background-color: var(--black);
-	}
-
-	.button:hover {
 		color: var(--white);
 	}
 </style>
