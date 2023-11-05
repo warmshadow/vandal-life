@@ -16,15 +16,4 @@
 	$: style = `--text-color: ${colors[color]}; --font-weight: ${fontWeight}; --text-decoration: ${textDecoration};`;
 </script>
 
-<h6 {style}><slot /></h6>
-
-<style>
-	h6 {
-		font-size: 24px;
-		font-weight: var(--font-weight);
-		line-height: 32px;
-		text-decoration: var(--text-decoration);
-
-		color: var(--text-color);
-	}
-</style>
+<h6 {style} class="heading6"><slot /></h6>

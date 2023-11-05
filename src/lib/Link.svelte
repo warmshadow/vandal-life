@@ -5,7 +5,7 @@
 	export let label: string = 'Read more';
 </script>
 
-<a href={to}><Text.Body link>{label}</Text.Body></a>
+<a href={to} class="body">{label}</a>
 
 <style>
 	a {

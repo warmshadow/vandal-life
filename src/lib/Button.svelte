@@ -1,16 +1,12 @@
 <script lang="ts">
-	import Text from '$lib/Text';
-
 	export let label: string;
 	export let link: string | undefined = undefined;
 </script>
 
 {#if !!link}
-	<a href={link}>
-		<span class="button"><Text.Body link>{label}</Text.Body></span>
-	</a>
+	<a href={link} class="button body">{label}</a>
 {:else}
-	<button on:click class="button"><Text.Body link>{label}</Text.Body></button>
+	<button on:click class="button body">{label}</button>
 {/if}
 
 <style>
@@ -30,7 +26,7 @@
 		background-color: var(--black);
 	}
 
-	.button:hover > :global(.text) {
+	.button:hover {
 		color: var(--white);
 	}
 </style>

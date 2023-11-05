@@ -17,15 +17,4 @@
 	$: style = `--text-color: ${colors[color]}; --font-weight: ${fontWeight}; --text-decoration: ${textDecoration};`;
 </script>
 
-<svelte:element this={link ? 'span' : 'p'} class="text" {style}><slot /></svelte:element>
-
-<style>
-	.text {
-		font-size: 16px;
-		font-weight: var(--font-weight);
-		line-height: 24px;
-		text-decoration: var(--text-decoration);
-
-		color: var(--text-color);
-	}
-</style>
+<svelte:element this={link ? 'span' : 'p'} class="body" {style}><slot /></svelte:element>

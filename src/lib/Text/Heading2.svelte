@@ -6,14 +6,4 @@
 	$: style = `--text-color: ${colors[color]};`;
 </script>
 
-<h2 {style}><slot /></h2>
-
-<style>
-	h2 {
-		font-size: 72px;
-		font-weight: 700;
-		line-height: 80px;
-
-		color: var(--text-color);
-	}
-</style>
+<h2 {style} class="heading2"><slot /></h2>

@@ -13,14 +13,4 @@
 	$: style = `--text-color: ${colors[color]}; --font-weight: ${fontWeight};`;
 </script>
 
-<h5 {style}><slot /></h5>
-
-<style>
-	h5 {
-		font-size: 32px;
-		font-weight: var(--font-weight);
-		line-height: 40px;
-
-		color: var(--text-color);
-	}
-</style>
+<h5 {style} class="heading5"><slot /></h5>
