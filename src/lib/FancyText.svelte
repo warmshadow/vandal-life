@@ -22,7 +22,7 @@
 	.fancy :global(h1) {
 		font-family: 'Folio', sans-serif;
 		line-height: 35px;
-		-webkit-text-stroke: 1px #000;
+		-webkit-text-stroke: 0.7px #000;
 	}
 
 	@media (max-width: 1460px) {
