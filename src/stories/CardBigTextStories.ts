@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import CardFancyText from '$lib/CardFancyText.svelte';
+import CardBigText from '$lib/CardBigText.svelte';
 
 const meta = {
-	title: 'Components/CardFancyText',
-	component: CardFancyText
-} satisfies Meta<CardFancyText>;
+	title: 'Components/CardBigText',
+	component: CardBigText
+} satisfies Meta<CardBigText>;
 
 export default meta;
 

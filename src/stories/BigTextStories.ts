@@ -1,16 +1,16 @@
 import type { Meta, StoryFn } from '@storybook/svelte';
 import type { ComponentProps } from 'svelte';
-import FancyText from '$lib/FancyText.svelte';
+import BigText from '$lib/BigText.svelte';
 
 const meta = {
-	title: 'Components/FancyText',
-	component: FancyText
-} satisfies Meta<FancyText>;
+	title: 'Components/BigText',
+	component: BigText
+} satisfies Meta<BigText>;
 
 export default meta;
 
-const Template: StoryFn<ComponentProps<FancyText>> = ({ ...args }) => ({
-	Component: FancyText,
+const Template: StoryFn<ComponentProps<BigText>> = ({ ...args }) => ({
+	Component: BigText,
 	props: args
 });
 

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import FancyText from '$lib/FancyText.svelte';
+	import BigText from '$lib/BigText.svelte';
 	import Text from '$lib/Text.svelte';
 	import type { ComponentProps } from 'svelte';
 
 	export let title: string | undefined = undefined;
 	export let subtitle: string | undefined = undefined;
 	export let bigTextBlocks: {
-		block1: ComponentProps<FancyText>;
-		block2?: ComponentProps<FancyText>;
+		block1: ComponentProps<BigText>;
+		block2?: ComponentProps<BigText>;
 	};
 	export let isCentered: boolean | undefined = false;
 	export let variant: 'primary' | 'black' = 'primary';
@@ -19,9 +19,9 @@
 			<Text tag="p" type="medium" color="white">{title}</Text>
 		{/if}
 		<div class={`text-block ${isCentered && 'centered'}`}>
-			<FancyText {...bigTextBlocks.block1} />
+			<BigText {...bigTextBlocks.block1} />
 			{#if !!bigTextBlocks.block2?.lines.length}
-				<FancyText lines={['Love', 'friends.']} />
+				<BigText lines={['Love', 'friends.']} />
 			{/if}
 		</div>
 		{#if !!subtitle}
