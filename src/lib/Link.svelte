@@ -1,9 +1,22 @@
 <script lang="ts">
+	import ArrowRight from '$lib/icons/ArrowRight.svelte';
+
 	export let to: string;
 	export let label: string = 'Read more';
+	export let variant: 'default' | 'animated-line' = 'default';
+	export let withArrow: boolean = false;
 </script>
 
-<a href={to} class="body">{label}</a>
+<a href={to} class={variant === 'default' ? 'heading6 medium default' : 'body animated-line'}
+	>{#if withArrow}
+		<span class="flex-content">
+			{label}
+			<span class="arrow-wrapper"><ArrowRight /></span>
+		</span>
+	{:else}
+		{label}
+	{/if}
+</a>
 
 <style>
 	a {
@@ -14,7 +27,12 @@
 		color: var(--black);
 	}
 
-	a::after {
+	a.default:hover {
+		color: #616161;
+		transition: all 0.25s;
+	}
+
+	a.animated-line::after {
 		content: '';
 		position: absolute;
 		width: 100%;
@@ -27,8 +45,19 @@
 		transition: transform 0.25s ease-out;
 	}
 
-	a:hover::after {
+	a.animated-line:hover::after {
 		transform: scaleX(0);
 		transform-origin: bottom left;
+	}
+
+	.flex-content {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+	}
+
+	.arrow-wrapper {
+		width: 32px;
+		height: 32px;
 	}
 </style>

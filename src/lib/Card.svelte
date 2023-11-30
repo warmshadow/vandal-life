@@ -20,7 +20,7 @@
 				<Text tag="p">{description}</Text>
 			{/if}
 		</div>
-		<Link {...link} />
+		<Link variant="animated-line" {...link} />
 	</div>
 </div>
 
