@@ -37,7 +37,6 @@
 	.container {
 		position: relative;
 		width: 100%;
-		height: 104px;
 		border: 1px solid var(--black);
 		border-radius: 100px;
 
@@ -46,7 +45,7 @@
 		align-items: center;
 		gap: 16px;
 
-		padding: 0 32px 0 40px;
+		padding: 32px 40px 32px 32px;
 	}
 
 	.icon-wrapper {
