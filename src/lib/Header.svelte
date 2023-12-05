@@ -3,10 +3,16 @@
 
 	import Button from '$lib/Button.svelte';
 	import VandalIcon from '$lib/icons/Vandal.svelte';
+	import MobileNav from '$lib/MobileNav.svelte';
 
 	export let links: ComponentProps<Button>[];
+	export let categoryName: string = 'vandal life';
 
-	document.addEventListener('mousemove', (e) => {
+	let innerWidth: number;
+	$: showMobileNav = innerWidth <= 1460;
+	$: moveEyes = innerWidth >= 700;
+
+	const enableEyeMovement = (e: MouseEvent) => {
 		const mouseX = e.clientX;
 		const mouseY = e.clientY;
 
@@ -21,16 +27,28 @@
 				eye.style.transform = `translate(${x}px, ${y}px)`;
 			});
 		}
-	});
+	};
+
+	$: if (moveEyes) {
+		document.addEventListener('mousemove', enableEyeMovement);
+	} else {
+		document.removeEventListener('mousemove', enableEyeMovement);
+	}
 </script>
+
+<svelte:window bind:innerWidth />
 
 <nav class="container">
 	<div class="icon-wrapper">
 		<VandalIcon />
 	</div>
-	{#each links as { label, link }}
-		<Button {label} {link} />
-	{/each}
+	{#if showMobileNav}
+		<MobileNav {categoryName} />
+	{:else}
+		{#each links as { label, link }}
+			<Button {label} {link} />
+		{/each}
+	{/if}
 </nav>
 
 <style>
