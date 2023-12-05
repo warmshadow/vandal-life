@@ -5,8 +5,17 @@
 	import ArrowRight from '$lib/icons/ArrowRight.svelte';
 	import ArrowTopRound from '$lib/icons/ArrowTopRound.svelte';
 	import ShareIcon from '$lib/icons/ShareIcon.svelte';
+	import VandalIcon from '$lib/icons/Vandal.svelte';
 
-	const icons = [Hamburger, HamburgerBlack, ArrowLeft, ArrowRight, ArrowTopRound, ShareIcon];
+	const icons = [
+		Hamburger,
+		HamburgerBlack,
+		ArrowLeft,
+		ArrowRight,
+		ArrowTopRound,
+		ShareIcon,
+		VandalIcon
+	];
 </script>
 
 {#each icons as icon}
