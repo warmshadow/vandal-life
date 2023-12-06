@@ -64,7 +64,7 @@
 	}
 
 	.scrolling-text > :global(p) {
-		text-wrap: nowrap;
+		white-space: nowrap;
 	}
 
 	@-moz-keyframes scroll-left {
