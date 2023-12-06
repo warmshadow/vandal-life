@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/svelte';
 import type { ComponentProps } from 'svelte';
-import Header from '$lib/Header.svelte';
+import { Header } from '$lib';
 
 const meta = {
 	title: 'Components/NavHeader',

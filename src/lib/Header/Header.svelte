@@ -2,9 +2,9 @@
 	import type { ComponentProps } from 'svelte';
 
 	import Button from '$lib/Button.svelte';
-	import MobileNav from '$lib/MobileNav.svelte';
-
 	import VandalIcon from '$lib/icons/Vandal.svelte';
+
+	import MobileNav from './MobileNav.svelte';
 
 	export let links: ComponentProps<Button>[];
 	export let categoryName: string = 'vandal life';
