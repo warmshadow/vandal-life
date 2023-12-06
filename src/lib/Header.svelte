@@ -2,8 +2,9 @@
 	import type { ComponentProps } from 'svelte';
 
 	import Button from '$lib/Button.svelte';
-	import VandalIcon from '$lib/icons/Vandal.svelte';
 	import MobileNav from '$lib/MobileNav.svelte';
+
+	import VandalIcon from '$lib/icons/Vandal.svelte';
 
 	export let links: ComponentProps<Button>[];
 	export let categoryName: string = 'vandal life';
@@ -43,7 +44,7 @@
 		<VandalIcon />
 	</div>
 	{#if showMobileNav}
-		<MobileNav {categoryName} />
+		<MobileNav {categoryName} {links} />
 	{:else}
 		{#each links as { label, link }}
 			<Button {label} {link} />
@@ -63,15 +64,17 @@
 		align-items: center;
 		gap: 16px;
 
-		padding: 32px 40px 32px 32px;
+		padding: 32px 32px 32px 40px;
 	}
 
 	.icon-wrapper {
 		position: absolute;
-		top: 12px;
+		top: 15px;
 		left: 40px;
 		width: 87px;
 		height: 96px;
+
+		z-index: 2;
 	}
 
 	.icon-wrapper :global(#left-eye),

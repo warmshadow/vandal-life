@@ -1,7 +1,12 @@
 <script lang="ts">
 	import Text from '$lib/Text.svelte';
+	import MobileNavigation from '$lib/MobileNavigation.svelte';
+
+	import Hamburger from '$lib/icons/Hamburger.svelte';
 
 	export let categoryName: string;
+
+	$: showMobileButtons = false;
 </script>
 
 <div class="animation-container">
@@ -13,6 +18,16 @@
 		</span>
 	{/each}
 </div>
+<button
+	class="hamburger-wrapper"
+	class:active={showMobileButtons}
+	on:click={() => (showMobileButtons = !showMobileButtons)}
+>
+	<Hamburger />
+</button>
+{#if showMobileButtons}
+	<MobileNavigation links={$$restProps.links} />
+{/if}
 
 <style>
 	.animation-container {
@@ -25,6 +40,7 @@
 		display: flex;
 
 		width: 166px;
+		margin: 2px 0;
 	}
 
 	.animation-container:before {
@@ -94,5 +110,31 @@
 			-webkit-transform: translateX(-100%);
 			transform: translateX(-100%);
 		}
+	}
+
+	.hamburger-wrapper {
+		width: 40px;
+		height: 40px;
+
+		cursor: pointer;
+
+		border: none;
+		background-color: transparent;
+	}
+
+	.hamburger-wrapper:hover :global(#border),
+	.hamburger-wrapper.active :global(#border) {
+		stroke: var(--black);
+		transition: all 0.3s;
+	}
+	.hamburger-wrapper:hover :global(#background),
+	.hamburger-wrapper.active :global(#background) {
+		fill: var(--black);
+		transition: all 0.3s;
+	}
+	.hamburger-wrapper:hover :global(#lines),
+	.hamburger-wrapper.active :global(#lines) {
+		stroke: var(--white);
+		transition: all 0.3s;
 	}
 </style>

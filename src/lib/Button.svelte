@@ -13,7 +13,7 @@
 	.button {
 		display: inline-flex;
 		border-radius: 100px;
-		padding: 10px 16px;
+		padding: 7px 16px;
 		background-color: var(--white);
 		color: var(--black);
 		border: none;
