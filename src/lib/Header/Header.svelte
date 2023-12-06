@@ -11,7 +11,7 @@
 
 	let innerWidth: number;
 	$: showMobileNav = innerWidth <= 1460;
-	$: moveEyes = innerWidth >= 700;
+	$: isDesktop = innerWidth >= 700;
 
 	const enableEyeMovement = (e: MouseEvent) => {
 		const mouseX = e.clientX;
@@ -30,7 +30,7 @@
 		}
 	};
 
-	$: if (moveEyes) {
+	$: if (isDesktop) {
 		document.addEventListener('mousemove', enableEyeMovement);
 	} else {
 		document.removeEventListener('mousemove', enableEyeMovement);
@@ -39,8 +39,8 @@
 
 <svelte:window bind:innerWidth />
 
-<nav class="container">
-	<div class="icon-wrapper">
+<nav class:desktop={isDesktop} class="container">
+	<div class:desktop={isDesktop} class="icon-wrapper">
 		<VandalIcon />
 	</div>
 	{#if showMobileNav}
@@ -56,25 +56,39 @@
 	.container {
 		position: relative;
 		width: 100%;
-		border: 1px solid var(--black);
-		border-radius: 100px;
+
+		border: none;
+		padding: 24px 0 24px 0;
 
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 		gap: 16px;
+	}
 
+	.container.desktop {
+		border: 1px solid var(--black);
+		border-radius: 100px;
 		padding: 32px 32px 32px 40px;
 	}
 
 	.icon-wrapper {
 		position: absolute;
-		top: 15px;
+		bottom: -7px;
+		left: 15px;
+
+		width: 71px;
+		height: 78px;
+
+		z-index: 10; /* above scrolling text */
+	}
+
+	.icon-wrapper.desktop {
+		bottom: -8px;
 		left: 40px;
+
 		width: 87px;
 		height: 96px;
-
-		z-index: 2;
 	}
 
 	.icon-wrapper :global(#left-eye),
