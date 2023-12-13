@@ -30,6 +30,8 @@
 	.animation-container:before {
 		content: '';
 		box-shadow: inset 10px 0 10px 5px white, inset -10px 0 10px 5px white;
+		border-radius: 120px;
+
 		position: absolute;
 		pointer-events: none;
 		top: 0;
