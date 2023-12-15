@@ -18,7 +18,7 @@
 	<HamburgerIcon />
 </button>
 {#if showNavigation}
-	<MobileNavigationCard links={$$restProps.links} />
+	<MobileNavigationCard links={$$restProps.links} on:click={() => (showNavigation = false)} />
 {/if}
 
 <style>

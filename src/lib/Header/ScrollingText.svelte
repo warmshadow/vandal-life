@@ -16,6 +16,7 @@
 
 <style>
 	.animation-container {
+		background-color: var(--white);
 		position: relative;
 		border: 1px solid var(--black);
 		border-radius: 120px;

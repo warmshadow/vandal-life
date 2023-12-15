@@ -8,7 +8,7 @@
 
 <div class="container">
 	{#each links as { label, link }}
-		<Button {label} {link} />
+		<Button {label} {link} on:click />
 	{/each}
 </div>
 

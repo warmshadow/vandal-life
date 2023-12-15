@@ -4,7 +4,7 @@
 </script>
 
 {#if !!link}
-	<a href={link} class="button body">{label}</a>
+	<a href={link} class="button body" on:click>{label}</a>
 {:else}
 	<button on:click class="button body">{label}</button>
 {/if}
