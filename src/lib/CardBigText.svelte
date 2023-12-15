@@ -40,6 +40,8 @@
 
 		border-radius: 12px;
 		background-color: var(--primary);
+
+		height: 100%;
 	}
 
 	.container.black {
@@ -51,6 +53,8 @@
 		flex-direction: column;
 		justify-content: space-between;
 		row-gap: 32px;
+
+		height: 100%;
 	}
 
 	.text-block {
@@ -62,10 +66,13 @@
 
 		/* @TODO to break text earlier, look for better logic */
 		padding-right: 48px;
+
+		height: 100%;
 	}
 
 	.text-block.centered {
 		justify-content: center;
+		align-items: center;
 	}
 
 	@media (min-width: 1180px) {

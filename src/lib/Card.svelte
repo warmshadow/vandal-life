@@ -35,10 +35,11 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 16px;
-		max-height: 464px;
 
 		border-radius: 20px;
 		border: 1px solid var(--black);
+
+		height: 100%;
 	}
 
 	.img-container {
@@ -56,6 +57,8 @@
 		flex-direction: column;
 		justify-content: space-between;
 		row-gap: 24px;
+
+		height: 100%;
 	}
 
 	.text-block {
