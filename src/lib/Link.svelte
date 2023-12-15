@@ -4,10 +4,15 @@
 	export let to: string;
 	export let label: string = 'Read more';
 	export let variant: 'default' | 'animated-line' = 'default';
+	export let size: 'large' | 'small' = 'large';
 	export let withArrow: boolean = false;
 </script>
 
-<a href={to} class={variant === 'default' ? 'heading6 medium default' : 'body animated-line'}
+<a
+	href={to}
+	class={variant === 'default'
+		? `${size === 'large' ? 'heading6' : 'body'} medium default`
+		: 'body animated-line'}
 	>{#if withArrow}
 		<span class="flex-content">
 			{label}

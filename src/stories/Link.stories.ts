@@ -20,6 +20,13 @@ Default.args = {
 	to: '/'
 };
 
+export const DefaultSmall = Template.bind({});
+DefaultSmall.args = {
+	label: 'VIEW ALL',
+	to: '/',
+	size: 'small'
+};
+
 export const WithArrow = Template.bind({});
 WithArrow.args = {
 	label: 'VIEW ALL',
