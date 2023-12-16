@@ -5,10 +5,12 @@
 
 	export let title: string | undefined = undefined;
 	export let subtitle: string | undefined = undefined;
-	export let bigTextBlocks: {
-		block1: ComponentProps<BigText>;
-		block2?: ComponentProps<BigText>;
-	};
+	export let bigTextBlocks:
+		| {
+				block1: ComponentProps<BigText>;
+				block2?: ComponentProps<BigText>;
+		  }
+		| undefined = undefined;
 	export let isCentered: boolean | undefined = false;
 	export let variant: 'primary' | 'black' = 'primary';
 </script>
@@ -18,12 +20,14 @@
 		{#if !!title}
 			<Text tag="p" type="medium" color="white">{title}</Text>
 		{/if}
-		<div class={`text-block ${isCentered && 'centered'}`}>
-			<BigText {...bigTextBlocks.block1} />
-			{#if !!bigTextBlocks.block2?.lines.length}
-				<BigText lines={['Love', 'friends.']} />
-			{/if}
-		</div>
+		{#if !!bigTextBlocks}
+			<div class={`text-block ${isCentered && 'centered'}`}>
+				<BigText {...bigTextBlocks.block1} />
+				{#if !!bigTextBlocks.block2?.lines.length}
+					<BigText lines={['Love', 'friends.']} />
+				{/if}
+			</div>
+		{/if}
 		{#if !!subtitle}
 			<Text tag="p" type="medium" color="white">{subtitle}</Text>
 		{/if}
