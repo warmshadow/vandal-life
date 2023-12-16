@@ -5,8 +5,8 @@ Monotype with any questions regarding Web Fonts: https://www.linotype.com */
 
 @font-face {
 	font-family: 'Folio';
-	src: url('Fonts/5734441/f4be3fcf-e382-4dbf-8104-fa314df2f153.woff2') format('woff2'),
-		url('Fonts/5734441/fe6a5160-bb18-41ce-944b-b59726b54c6d.woff') format('woff');
+	src: url('/Fonts/5734441/f4be3fcf-e382-4dbf-8104-fa314df2f153.woff2') format('woff2'),
+		url('/Fonts/5734441/fe6a5160-bb18-41ce-944b-b59726b54c6d.woff') format('woff');
 }
 
 * {
