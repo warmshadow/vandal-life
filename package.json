@@ -14,6 +14,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@storyblok/svelte": "^3.1.6",
     "@storybook/addon-essentials": "^7.5.2",
     "@storybook/addon-interactions": "^7.5.2",
     "@storybook/addon-links": "^7.5.2",
@@ -26,10 +27,12 @@
     "@sveltejs/kit": "^1.20.4",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-basic-ssl": "^1.0.2",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-svelte": "^2.30.0",
+    "marked": "^11.1.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.10.1",
     "react": "^18.2.0",
