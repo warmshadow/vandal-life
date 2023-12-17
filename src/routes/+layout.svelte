@@ -3,6 +3,7 @@
 	import '../styles/styles.css';
 
 	import { Header } from '$lib';
+	import ScrollToTop from '$lib/ScrollToTop.svelte';
 </script>
 
 <div class="layout-wrapper">
@@ -19,6 +20,7 @@
 	<div class="page-content-wrapper">
 		<slot />
 	</div>
+	<ScrollToTop />
 </div>
 
 <style>
