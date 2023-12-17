@@ -1,15 +1,27 @@
 <script lang="ts">
 	import ArrowRight from '$lib/icons/ArrowRight.svelte';
 
-	export let to: string;
+	export let to: string | undefined = undefined;
 	export let label: string = 'Read more';
 	export let variant: 'default' | 'animated-line' = 'default';
 	export let size: 'large' | 'small' = 'large';
 	export let withArrow: boolean = false;
+
+	export let onClick: (() => void) | undefined = undefined;
+
+	let tag = 'a';
+	if (!to && !!onClick) {
+		tag = 'button';
+	}
+	const hrefProp = tag === 'button' ? { href: to } : {}; // to bypass typing error when passing href directly
 </script>
 
-<a
-	href={to}
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<svelte:element
+	this={tag}
+	{...hrefProp}
+	on:click={onClick}
+	class:link={true}
 	class={variant === 'default'
 		? `${size === 'large' ? 'heading6' : 'body'} medium default`
 		: 'body animated-line'}
@@ -21,23 +33,28 @@
 	{:else}
 		{label}
 	{/if}
-</a>
+</svelte:element>
 
 <style>
-	a {
+	.link {
 		display: inline-block;
 		position: relative;
 		width: fit-content;
 
+		background-color: transparent;
+		border: none;
+
 		color: var(--black);
+
+		cursor: pointer;
 	}
 
-	a.default:hover {
+	.link.default:hover {
 		color: #616161;
 		transition: all 0.25s;
 	}
 
-	a.animated-line::after {
+	.link.animated-line::after {
 		content: '';
 		position: absolute;
 		width: 100%;
@@ -50,7 +67,7 @@
 		transition: transform 0.25s ease-out;
 	}
 
-	a.animated-line:hover::after {
+	.link.animated-line:hover::after {
 		transform: scaleX(0);
 		transform-origin: bottom left;
 	}
