@@ -4,6 +4,15 @@
 
 	import placeholder from '$lib/placeholder.png';
 
+	import { onMount } from 'svelte';
+	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
+
+	export let data;
+
+	onMount(() => {
+		useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory));
+	});
+
 	const categorySectionData = {
 		categoryCard: { bigTextBlocks: { block1: { lines: ['new', 'news.', 'on', 'culture.'] } } },
 		cards: [
@@ -66,3 +75,7 @@
 />
 
 <CategorySection data={categorySectionData} />
+
+{#if data.story}
+	<StoryblokComponent blok={data.story.content} />
+{/if}

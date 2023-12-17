@@ -1,5 +1,7 @@
 import { apiPlugin, storyblokInit, useStoryblokApi } from '@storyblok/svelte';
 
+import Page from '../components/Page.svelte';
+import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 
 /** @type {import('./$types').LayoutLoad} */
@@ -8,7 +10,9 @@ export async function load() {
 		accessToken: 'G9SYJLnU1lNBNIGrydjJHwtt',
 		use: [apiPlugin],
 		components: {
-			post: Post
+			post: Post,
+			page: Page,
+			CardBigText
 		}
 	});
 	let storyblokApi = await useStoryblokApi();
