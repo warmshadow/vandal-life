@@ -68,9 +68,6 @@
 
 		display: flex;
 		justify-content: flex-end;
-
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
 	}
 
 	.icon-wrapper {
@@ -120,6 +117,9 @@
 			padding: 32px 32px 32px 40px;
 
 			margin: 0 -1px; /* so MobileNavigationCard width is aligned with content in a page */
+
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
 		}
 
 		.icon-wrapper {
