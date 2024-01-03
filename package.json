@@ -37,6 +37,7 @@
     "prettier-plugin-svelte": "^2.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "storyblok-js-client": "^6.4.1",
     "storybook": "^7.5.2",
     "svelte": "^4.0.5",
     "svelte-check": "^3.4.3",

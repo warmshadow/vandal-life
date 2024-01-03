@@ -13,7 +13,7 @@
 	if (!to && !!onClick) {
 		tag = 'button';
 	}
-	const hrefProp = tag === 'button' ? { href: to } : {}; // to bypass typing error when passing href directly
+	const hrefProp = tag === 'a' ? { href: to } : {}; // to bypass typing error when passing href directly
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
