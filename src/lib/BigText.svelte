@@ -1,13 +1,11 @@
 <script lang="ts">
 	import Text from '$lib/Text.svelte';
 
-	export let lines: string[];
+	export let text: string;
 </script>
 
 <div class="fancy">
-	{#each lines as line}
-		<Text tag="h1" color="white">{line}</Text>
-	{/each}
+	<Text tag="h1" color="white">{text}</Text>
 </div>
 
 <style>

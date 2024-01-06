@@ -16,5 +16,5 @@ const Template: StoryFn<ComponentProps<BigText>> = ({ ...args }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-	lines: ['Can we make it', 'a new normal?']
+	text: 'Can we make it\na new normal?'
 };

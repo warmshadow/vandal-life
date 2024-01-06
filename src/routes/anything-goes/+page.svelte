@@ -23,21 +23,25 @@
 	];
 </script>
 
+<CardBigText content={[{ component: 'bigText', leftText: 'anything\ngoes.' }]} />
 <CardBigText
-	bigTextBlocks={{
-		block1: { lines: ['anything', 'goes.'] }
-	}}
-/>
-<CardBigText
-	subtitle="‘anything goes’ is an additional part of the magazine which operates as a market of ideas, meaning that this is the place there you can submit and sell your creative thoughts. all rights reserved."
-	variant="black"
+	content={[
+		{
+			component: 'smallText',
+			text: '‘anything goes’ is an additional part of the magazine which operates as a market of ideas, meaning that this is the place there you can submit and sell your creative thoughts. all rights reserved.'
+		}
+	]}
+	variant="secondary"
 />
 <!-- Temporary, update layout later -->
 <CardBigText
-	bigTextBlocks={{
-		block1: { lines: ['what we', 'have now?'] }
-	}}
-	variant="black"
+	content={[
+		{
+			component: 'bigText',
+			leftText: 'what we\nhave now?'
+		}
+	]}
+	variant="secondary"
 />
 
 <ArticlesSection data={data.concat(data).concat(data)} />

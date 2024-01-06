@@ -30,9 +30,5 @@
 	];
 </script>
 
-<CardBigText
-	bigTextBlocks={{
-		block1: { lines: ['new', 'news', 'on', 'culture.'] }
-	}}
-/>
+<CardBigText content={[{ component: 'bigText', leftText: 'new\nnews\non\nculture.' }]} />
 <ArticlesSection data={data.concat(data).concat(data).concat(data).concat(data)} />

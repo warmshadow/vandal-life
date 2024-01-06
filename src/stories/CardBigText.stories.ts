@@ -12,13 +12,13 @@ type Story = StoryObj<typeof meta>;
 
 export const OneBlock: Story = {
 	args: {
-		bigTextBlocks: { block1: { lines: ['Can we make it', 'a new normal?'] } }
+		content: [{ component: 'bigText', leftText: 'Can we make it\na new normal?' }]
 	}
 };
 
 export const TwoBlocks: Story = {
 	args: {
-		bigTextBlocks: { ...OneBlock.args.bigTextBlocks, block2: { lines: ['Love', 'friends.'] } }
+		content: [{ ...OneBlock.args.content[0], rightText: 'Love\nfriends.' }]
 	}
 };
 
@@ -31,17 +31,23 @@ export const Centered: Story = {
 
 export const WithTitleSubtitle: Story = {
 	args: {
-		...OneBlock.args,
-		title:
-			'A journal of ideas. A collaborative space. Insights on social and cultural life. Sharing a point of view on life today.',
-		subtitle:
-			'It isn’t the powerful, top-down, institutional culture that’s spoon-fed to us that excited me. I learnt that, at least as an artist, the most meaningful, rich culture is the one that you create yourself, among friends, and even at home. Fritz Haeg'
+		content: [
+			{
+				component: 'smallText',
+				text: 'A journal of ideas. A collaborative space. Insights on social and cultural life. Sharing a point of view on life today.'
+			},
+			OneBlock.args.content[0],
+			{
+				component: 'smallText',
+				text: 'It isn’t the powerful, top-down, institutional culture that’s spoon-fed to us that excited me. I learnt that, at least as an artist, the most meaningful, rich culture is the one that you create yourself, among friends, and even at home. Fritz Haeg'
+			}
+		]
 	}
 };
 
-export const BlackBackground: Story = {
+export const SecondaryBackground: Story = {
 	args: {
 		...WithTitleSubtitle.args,
-		variant: 'black'
+		variant: 'secondary'
 	}
 };

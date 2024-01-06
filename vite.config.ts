@@ -57,6 +57,15 @@ function getStories() {
 					fs.writeFileSync(`${CATEGORIES_DIR}/${folder.slug}.json`, categoryJson);
 				}
 			});
+
+			const {
+				data: { story: homeStoryData }
+			} = await Storyblok.get('cdn/stories/home', {
+				version: 'draft' // @TODO update when live and use other access key only for published
+			});
+
+			const homeJson = JSON.stringify(homeStoryData, null, 2);
+			fs.writeFileSync(`${DATA_DIR}/home.json`, homeJson);
 		}
 	};
 }

@@ -1,36 +1,27 @@
 <script lang="ts">
 	import BigText from '$lib/BigText.svelte';
 	import Text from '$lib/Text.svelte';
-	import type { ComponentProps } from 'svelte';
 
-	export let title: string | undefined = undefined;
-	export let subtitle: string | undefined = undefined;
-	export let bigTextBlocks:
-		| {
-				block1: ComponentProps<BigText>;
-				block2?: ComponentProps<BigText>;
-		  }
-		| undefined = undefined;
+	export let content: any; // @TODO add typing
+	export let variant: 'primary' | 'secondary' = 'primary';
 	export let isCentered: boolean | undefined = false;
-	export let variant: 'primary' | 'black' = 'primary';
 </script>
 
 <div class={`container ${variant}`}>
 	<div class="content">
-		{#if !!title}
-			<Text tag="p" type="medium" color="white">{title}</Text>
-		{/if}
-		{#if !!bigTextBlocks}
-			<div class={`text-block ${isCentered && 'centered'}`}>
-				<BigText {...bigTextBlocks.block1} />
-				{#if !!bigTextBlocks.block2?.lines.length}
-					<BigText lines={['Love', 'friends.']} />
-				{/if}
-			</div>
-		{/if}
-		{#if !!subtitle}
-			<Text tag="p" type="medium" color="white">{subtitle}</Text>
-		{/if}
+		{#each content as { component, text, leftText, rightText }}
+			{#if component === 'smallText'}
+				<Text tag="p" type="medium" color="white">{text}</Text>
+			{/if}
+			{#if component === 'bigText'}
+				<div class={`text-block ${isCentered && 'centered'}`}>
+					<BigText text={leftText} />
+					{#if rightText}
+						<BigText text={rightText} />
+					{/if}
+				</div>
+			{/if}
+		{/each}
 	</div>
 </div>
 
@@ -48,7 +39,7 @@
 		height: 100%;
 	}
 
-	.container.black {
+	.container.secondary {
 		background-color: var(--black);
 	}
 

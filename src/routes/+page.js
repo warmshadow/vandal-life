@@ -17,6 +17,6 @@ export async function load({ data, parent }) {
 
 	return {
 		story,
-		categories: data.categories // from +page.server.js
+		...data // categories and homeStory from +page.server.js
 	};
 }

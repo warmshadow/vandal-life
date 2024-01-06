@@ -43,7 +43,7 @@
 <div class="container">
 	<div class="grid-container">
 		<div class="category-item" class:altOrder>
-			<CardBigText {...data.categoryCard} isCentered variant="black" />
+			<CardBigText {...data.categoryCard} isCentered variant="secondary" />
 		</div>
 		{#each data.cards as card}
 			<div class="item" class:altOrder {style}>
