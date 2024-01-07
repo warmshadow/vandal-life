@@ -12,7 +12,7 @@
 	<Header
 		links={[
 			{ label: 'home', link: '/' },
-			...data.categories.map(({ name, slug }) => ({ label: name, link: '/' })) // @TODO use slug when pages are ready
+			...data.categories.map(({ name, slug }) => ({ label: name, link: `/${slug}` }))
 		]}
 	/>
 	<div class="page-content-wrapper">
