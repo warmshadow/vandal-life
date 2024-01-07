@@ -35,8 +35,6 @@
 	<StoryblokComponent blok={data.story.content} />
 {/if} -->
 
-<a href="/new-news-on-culture/cultural-shifts-unveiled">Test Postas</a>
-
 {#if data.categoriesStories}
 	{#each data.categoriesStories as category}
 		<!-- @TODO add custom red block here -->
