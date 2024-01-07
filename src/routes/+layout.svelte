@@ -4,17 +4,15 @@
 
 	import { Header } from '$lib';
 	import ScrollToTop from '$lib/ScrollToTop.svelte';
+
+	export let data: any; // @TODO add typing
 </script>
 
 <div class="layout-wrapper">
 	<Header
 		links={[
 			{ label: 'home', link: '/' },
-			{ label: 'new news. on culture.', link: '/' },
-			{ label: 'style > fashion', link: '/' },
-			{ label: `let's talk about food`, link: '/' },
-			{ label: 'hip hop. eternal source of energy', link: '/' },
-			{ label: 'anything goes', link: '/' }
+			...data.categories.map(({ name, slug }) => ({ label: name, link: '/' })) // @TODO use slug when pages are ready
 		]}
 	/>
 	<div class="page-content-wrapper">

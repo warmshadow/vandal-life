@@ -32,15 +32,14 @@
 
 <a href="/new-news-on-culture/cultural-shifts-unveiled">Test Postas</a>
 
-{#if data.categories}
-	{#each Object.keys(data.categories) as category}
+{#if data.categoriesStories}
+	{#each data.categoriesStories as category}
 		<!-- @TODO add custom red block here -->
 		<CategorySection
 			data={{
 				...categorySectionData,
-				// @TODO remove slice here when amount of stories are handled in +page.server.js
 				// @TODO fix story argument typing error
-				cards: data.categories[category].stories.slice(0, 3).map((story) => ({
+				cards: category.data.stories.map((story) => ({
 					src: placeholder,
 					title: story.content.title,
 					description: story.content.subtitle,

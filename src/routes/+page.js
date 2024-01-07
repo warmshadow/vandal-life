@@ -15,8 +15,15 @@ export async function load({ data, parent }) {
 		story = dataStory.data.story;
 	}
 
+	const { categoriesStories } = await parent();
+	const latestCategoriesStories = categoriesStories.map((category) => ({
+		...category,
+		data: { stories: category.data.stories.slice(0, 3) }
+	}));
+
 	return {
 		story,
-		...data // categories and homeStory from +page.server.js
+		categoriesStories: latestCategoriesStories,
+		...data // homeStory from +page.server.js
 	};
 }
