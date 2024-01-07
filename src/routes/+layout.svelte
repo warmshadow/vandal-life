@@ -14,6 +14,7 @@
 			{ label: 'home', link: '/' },
 			...data.categories.map(({ name, slug }) => ({ label: name, link: `/${slug}` }))
 		]}
+		categoryName={data.currentCategory}
 	/>
 	<div class="page-content-wrapper">
 		<slot />

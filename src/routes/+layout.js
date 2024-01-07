@@ -6,7 +6,7 @@ import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 
 /** @type {import('./$types').LayoutLoad} */
-export async function load({ data }) {
+export async function load({ url: { pathname }, data }) {
 	storyblokInit({
 		accessToken: PUBLIC_STORYBLOK_TOKEN,
 		use: [apiPlugin],
@@ -20,6 +20,8 @@ export async function load({ data }) {
 
 	return {
 		storyblokApi: storyblokApi,
+		currentCategory:
+			data.categories.find(({ slug }) => `/${slug}` === pathname)?.name || 'vandal life',
 		...data // from +layout.server.js
 	};
 }
