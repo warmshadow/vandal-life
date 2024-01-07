@@ -23,24 +23,21 @@
 	};
 </script>
 
-{#if data.homeStory}
-	{#each data.homeStory.content.listOfMessages as { cards }}
-		{#each cards as { content, variant }}
-			<CardBigText {content} {variant} />
-		{/each}
-	{/each}
-{/if}
-
 <!-- {#if data.story}
 	<StoryblokComponent blok={data.story.content} />
 {/if} -->
 
 {#if data.categoriesStories}
 	{#each data.categoriesStories as category, index}
-		<!-- @TODO add custom red block here -->
+		{#if data.homeStory?.content?.listOfMessages[index]}
+			{#each data.homeStory.content.listOfMessages[index].cards as { content, variant }}
+				<CardBigText {content} {variant} />
+			{/each}
+		{/if}
+
 		<CategorySection
 			data={{
-				...categorySectionData,
+				categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
 				// @TODO fix story argument typing error
 				cards: category.data.stories.map((story) =>
 					story.content.component !== 'idea'
