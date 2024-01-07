@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Text from '$lib/Text.svelte';
+	import { marked } from 'marked';
 
 	export let title: string;
 	export let description: string | undefined = undefined;
@@ -11,7 +12,7 @@
 	</Text>
 	{#if !!description}
 		<Text tag="p">
-			{description}
+			{@html marked(description)}
 		</Text>
 	{/if}
 </div>
