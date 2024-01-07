@@ -36,7 +36,7 @@
 {/if} -->
 
 {#if data.categoriesStories}
-	{#each data.categoriesStories as category}
+	{#each data.categoriesStories as category, index}
 		<!-- @TODO add custom red block here -->
 		<CategorySection
 			data={{
@@ -63,8 +63,10 @@
 									}
 								}
 						  }
-				)
+				),
+				categoryLink: `/${category.slug}`
 			}}
+			altOrder={category.data.stories[0].content.component !== 'idea' && !(index % 2)}
 		/>
 	{/each}
 {/if}

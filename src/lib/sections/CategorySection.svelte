@@ -7,7 +7,11 @@
 	import ArrowLeft from '$lib/icons/ArrowLeft.svelte';
 	import ArrowRight from '$lib/icons/ArrowRight.svelte';
 
-	export let data: { categoryCard: ComponentProps<CardBigText>; cards: ComponentProps<Card>[] };
+	export let data: {
+		categoryCard: ComponentProps<CardBigText>;
+		cards: ComponentProps<Card>[];
+		categoryLink: string;
+	};
 	export let altOrder = false;
 
 	const getMinimumPositive = (min: number, max: number) => Math.min(Math.max(0, min), max);
@@ -53,7 +57,7 @@
 	</div>
 
 	<div class="view-all-desktop">
-		<Link label="VIEW ALL" to="/" withArrow />
+		<Link label="VIEW ALL" to={data.categoryLink} withArrow />
 	</div>
 	<div class="view-all-mobile">
 		<button
@@ -63,7 +67,7 @@
 		>
 			<ArrowLeft />
 		</button>
-		<Link label="VIEW ALL" to="/" size="small" />
+		<Link label="VIEW ALL" to={data.categoryLink} size="small" />
 		<button
 			class="icon-wrapper"
 			on:click={() => scrollStep('forward')}
