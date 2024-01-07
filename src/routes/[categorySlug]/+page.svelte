@@ -10,13 +10,9 @@
 	let modalContent = { title: '', description: undefined };
 
 	export let data: any;
-
-	const ideaPage = data.categoryStories.data.stories.every(
-		(story) => story.content.component === 'idea'
-	);
 </script>
 
-{#if !ideaPage}
+{#if !data.isIdeaPage}
 	<ArticlesSection
 		data={data.categoryStories.data.stories.map((story) => ({
 			src: placeholder,
