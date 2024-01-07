@@ -21,7 +21,8 @@ export async function load({ url: { pathname }, data }) {
 	return {
 		storyblokApi: storyblokApi,
 		currentCategory:
-			data.categories.find(({ slug }) => pathname.startsWith(`/${slug}/`))?.name || 'vandal life',
+			data.categories.find(({ slug }) => `${pathname}/`.startsWith(`/${slug}/`))?.name ||
+			'vandal life',
 		...data // from +layout.server.js
 	};
 }
