@@ -13,6 +13,10 @@
 </script>
 
 {#if !data.isIdeaPage}
+	<CardBigText
+		content={[{ component: 'bigText', leftText: data.categoryStories.name }]}
+		isCategoryName
+	/>
 	<ArticlesSection
 		data={data.categoryStories.data.stories.map((story) => ({
 			src: placeholder,
