@@ -3,6 +3,7 @@
 	import '../styles/styles.css';
 
 	import { Header } from '$lib';
+	import CardBigText from '$lib/CardBigText.svelte';
 	import ScrollToTop from '$lib/ScrollToTop.svelte';
 
 	export let data: any; // @TODO add typing
@@ -18,6 +19,12 @@
 	/>
 	<div class="page-content-wrapper">
 		<slot />
+	</div>
+	<div class="footer-wrapper">
+		<CardBigText
+			content={[{ component: 'bigText', leftText: '\nvandal\nlife.\n\n' }]}
+			variant="secondary"
+		/>
 	</div>
 	<ScrollToTop />
 </div>
@@ -45,6 +52,16 @@
 	@media (min-width: 1460px) {
 		.page-content-wrapper {
 			row-gap: 40px;
+		}
+	}
+
+	.footer-wrapper {
+		margin-top: 24px;
+	}
+
+	@media (min-width: 1181px) {
+		.footer-wrapper {
+			margin-top: 40px;
 		}
 	}
 </style>
