@@ -28,9 +28,10 @@
 		return imageSource;
 	};
 
-	$: renderedFeatureImage = innerWidth
-		? optimizeImage(blok.featuredImage, innerWidth >= 700 ? '1512x500' : '660x400')
-		: undefined;
+	$: renderedFeatureImage =
+		innerWidth && blok?.featuredImage
+			? optimizeImage(blok.featuredImage, innerWidth >= 700 ? '1512x500' : '660x400')
+			: undefined;
 </script>
 
 <svelte:window bind:innerWidth />
@@ -77,7 +78,9 @@
 				<Gallery
 					images={blok.gallery[0]?.columns?.map(({ images }) =>
 						images.map(({ image }) => ({
-							src: optimizeImage(image, blok.gallery[0].columns.length > 1 ? '700x0' : '1400x0'),
+							src: image
+								? optimizeImage(image, blok.gallery[0].columns.length > 1 ? '700x0' : '1400x0')
+								: '',
 							alt: image.alt
 						}))
 					)}
