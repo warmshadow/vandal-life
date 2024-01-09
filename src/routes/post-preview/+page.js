@@ -1,16 +1,18 @@
-export async function load({ url: { search }, parent }) {
-	const { storyblokApi } = await parent();
+import { browser } from '$app/environment';
 
-	const searchParams = new URLSearchParams(search);
-	const storyId = searchParams.get('_storyblok');
+export async function load({ url, parent }) {
+	if (browser) {
+		const { storyblokApi } = await parent();
 
-	const dataStory = await storyblokApi.get(`cdn/stories/${storyId}`, {
-		version: 'draft'
-	});
+		const searchParams = new URLSearchParams(url.search);
+		const storyId = searchParams.get('_storyblok');
 
-	return {
-		story: dataStory.data.story
-	};
+		const dataStory = await storyblokApi.get(`cdn/stories/${storyId}`, {
+			version: 'draft'
+		});
+
+		return {
+			story: dataStory.data.story
+		};
+	}
 }
-
-export const ssr = false;

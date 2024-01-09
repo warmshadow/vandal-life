@@ -27,6 +27,8 @@
 	<StoryblokComponent blok={data.story.content} />
 {/if} -->
 
+<a href="/post-preview">Post preview link</a>
+
 {#if data.categoriesStories}
 	{#each data.categoriesStories as category, index}
 		{#if data.homeStory?.content?.listOfMessages[index]}
