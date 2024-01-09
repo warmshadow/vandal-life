@@ -5,6 +5,7 @@
 	export let content: any; // @TODO add typing
 	export let variant: 'primary' | 'secondary' = 'primary';
 	export let isCentered: boolean | undefined = false;
+	export let isCategoryName: boolean | undefined = false;
 </script>
 
 <div class={`container ${variant}`}>
@@ -15,7 +16,9 @@
 			{/if}
 			{#if component === 'bigText'}
 				<div class={`text-block ${isCentered && 'centered'}`}>
-					<BigText text={leftText} />
+					<div class:category-name-wrapper={isCategoryName}>
+						<BigText text={leftText} />
+					</div>
 					{#if rightText}
 						<BigText text={rightText} />
 					{/if}
@@ -37,6 +40,10 @@
 		background-color: var(--primary);
 
 		height: 100%;
+	}
+
+	.category-name-wrapper :global(h1) {
+		width: min-content;
 	}
 
 	.container.secondary {
@@ -65,9 +72,11 @@
 		height: 100%;
 	}
 
-	.text-block.centered {
-		justify-content: center;
-		align-items: center;
+	@media (min-width: 1181px) {
+		.text-block.centered {
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	@media (min-width: 1180px) {

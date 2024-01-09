@@ -47,7 +47,7 @@
 <div class="container">
 	<div class="grid-container">
 		<div class="category-item" class:altOrder>
-			<CardBigText {...data.categoryCard} isCentered variant="secondary" />
+			<CardBigText {...data.categoryCard} isCentered variant="secondary" isCategoryName />
 		</div>
 		{#each data.cards as card}
 			<div class="item" class:altOrder {style}>
@@ -85,7 +85,7 @@
 		padding: 0;
 	}
 
-	@media (min-width: 1180px) {
+	@media (min-width: 1181px) {
 		.container {
 			padding: 0 106px;
 		}
@@ -99,7 +99,7 @@
 
 	.grid-container {
 		display: grid;
-		grid-template-rows: 200px 412px;
+		grid-template-rows: repeat(fit-content(100%), 2);
 		grid-template-columns: repeat(3, 100%);
 		grid-template-areas:
 			'a a a'
@@ -111,7 +111,7 @@
 
 	@media (min-width: 701px) {
 		.grid-container {
-			grid-template-rows: 240px 550px;
+			grid-template-rows: repeat(fit-content(100%), 2);
 			grid-template-columns: repeat(3, calc(50% - (var(--gap) / 2)));
 			grid-template-areas:
 				'a a a'
@@ -121,7 +121,7 @@
 
 	@media (min-width: 1181px) {
 		.grid-container {
-			grid-template-rows: 512px 512px;
+			grid-template-rows: repeat(fit-content(100%), 2);
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 			grid-template-areas:
 				'a b'
