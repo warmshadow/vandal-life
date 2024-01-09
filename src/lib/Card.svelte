@@ -7,6 +7,19 @@
 	export let title: string;
 	export let description: string | undefined = undefined;
 	export let link: ComponentProps<Link>;
+
+	const shortenString = (inputString: string, characterCount: number) => {
+		if (inputString.length <= characterCount) {
+			return inputString;
+		}
+
+		let shortened = inputString.slice(0, characterCount);
+
+		// Remove the last word if it's cut off
+		shortened = shortened.replace(/\s+\S*$/, '');
+
+		return `${shortened}...`;
+	};
 </script>
 
 <div class="container">
@@ -15,9 +28,9 @@
 	{/if}
 	<div class="content">
 		<div class="text-block">
-			<Text tag="h6" type="bold">{title}</Text>
+			<Text tag="h6" type="bold">{shortenString(title, 115)}</Text>
 			{#if !!description}
-				<Text tag="p">{description}</Text>
+				<Text tag="p">{shortenString(description, 100)}</Text>
 			{/if}
 		</div>
 		<Link variant="animated-line" {...link} />
