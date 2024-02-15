@@ -1,7 +1,5 @@
 import type { Preview } from '@storybook/svelte';
 
-import '@fontsource/inter';
-
 import '../src/styles/styles.css';
 
 const preview: Preview = {

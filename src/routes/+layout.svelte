@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '@fontsource/inter';
 	import '../styles/styles.css';
 
 	import { Header } from '$lib';

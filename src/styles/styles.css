@@ -9,6 +9,14 @@ Monotype with any questions regarding Web Fonts: https://www.linotype.com */
 		url('/Fonts/5734441/fe6a5160-bb18-41ce-944b-b59726b54c6d.woff') format('woff');
 }
 
+@font-face {
+	font-family: 'Swansea';
+	src: url('/Fonts/swansea/Swansea.ttf') format('ttf'),
+		url('/Fonts/swansea/SwanseaItalic.ttf') format('ttf'),
+		url('/Fonts/swansea/SwanseaBold.ttf') format('ttf'),
+		url('/Fonts/swansea/SwanseaBoldItalic.ttf') format('ttf');
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -32,7 +40,7 @@ html {
 }
 
 body {
-	font-family: 'Inter', Arial, Helvetica, sans-serif;
+	font-family: 'Swansea', Arial, Helvetica, sans-serif;
 }
 
 a {
