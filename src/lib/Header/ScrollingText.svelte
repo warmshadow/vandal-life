@@ -57,13 +57,13 @@
 		z-index: 2;
 	}
 
-	@media (min-width: 1180px) {
+	@media (min-width: 700px) {
 		.animation-container {
 			width: 320px;
 		}
 	}
 
-	@media (min-width: 1460px) {
+	@media (min-width: 1181px) {
 		.animation-container {
 			width: 460px;
 		}
