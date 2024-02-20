@@ -1,7 +1,15 @@
 <script lang="ts">
-	import { StoryblokComponent } from '@storyblok/svelte';
+	import { onMount } from 'svelte';
+	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
 
 	export let data;
+
+	// for storyblok live editor
+	if (data.previewMode) {
+		onMount(() => {
+			useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory));
+		});
+	}
 </script>
 
 {#if data.story}
