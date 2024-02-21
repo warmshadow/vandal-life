@@ -8,5 +8,5 @@
 </script>
 
 <div use:storyblokEditable={blok}>
-	<CardBigText bigTextBlocks={{ block1: { lines: [blok.text] } }} />
+	<CardBigText content={blok.content} variant={blok.variant} />
 </div>

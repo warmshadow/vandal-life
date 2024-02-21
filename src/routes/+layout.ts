@@ -1,7 +1,6 @@
 import { apiPlugin, storyblokInit, useStoryblokApi } from '@storyblok/svelte';
 import { PUBLIC_STORYBLOK_TOKEN } from '$env/static/public';
 
-import Page from '../components/Page.svelte';
 import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 
@@ -11,8 +10,7 @@ export async function load({ url: { pathname }, data }) {
 		use: [apiPlugin],
 		components: {
 			post: Post,
-			page: Page,
-			CardBigText
+			messageCard: CardBigText
 		}
 	});
 	const storyblokApi = useStoryblokApi();
@@ -22,7 +20,7 @@ export async function load({ url: { pathname }, data }) {
 		currentCategory:
 			data.categories.find(({ slug }) => `${pathname}/`.startsWith(`/${slug}/`))?.name ||
 			'vandal life',
-		...data // from +layout.server.js
+		...data // from +layout.server.ts
 	};
 }
 

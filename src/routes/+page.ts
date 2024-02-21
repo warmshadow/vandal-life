@@ -1,29 +1,28 @@
 import { browser } from '$app/environment';
-import type { ISbStoryData } from '@storyblok/svelte';
 
+import type { ISbStoryData } from '@storyblok/svelte';
 import type { HomePageStoryblok } from '../../component-types-sb';
 
-export async function load({ data, parent }) {
-	let story: ISbStoryData<HomePageStoryblok> | undefined;
-
+export async function load({ data, url, parent }) {
 	if (browser) {
-		const { storyblokApi } = await parent();
-		const dataStory = await storyblokApi.get('cdn/stories/home', {
-			version: 'draft' // @TODO implement draft and published (or no need as published will be shown as draft as well?)
-		});
+		const searchParams = new URLSearchParams(url.search);
+		const storyId = searchParams.get('_storyblok');
 
-		story = dataStory.data.story;
+		if (storyId) {
+			try {
+				const { storyblokApi } = await parent();
+				const dataStory: { data: { story: ISbStoryData<HomePageStoryblok> } } =
+					await storyblokApi.get(`cdn/stories/${storyId}`, {
+						version: 'draft' // @TODO implement draft and published (or no need as published will be shown as draft as well?)
+					});
+
+				return { ...data, story: dataStory.data.story, previewMode: true };
+			} catch {
+				// catching error when retrieving nonexisting story, in this case returning initial static data from +page.server.ts
+				return { ...data };
+			}
+		}
+	} else {
+		return { ...data }; // data from +page.server.ts
 	}
-
-	const { categoriesStories } = await parent();
-	const latestCategoriesStories = categoriesStories.map((category) => ({
-		...category,
-		data: { stories: category.data.stories.slice(0, 3) }
-	}));
-
-	return {
-		...data, // story from +page.server.js
-		story,
-		categoriesStories: latestCategoriesStories
-	};
 }

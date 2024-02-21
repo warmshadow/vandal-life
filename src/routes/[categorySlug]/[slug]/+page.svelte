@@ -2,12 +2,14 @@
 	import { onMount } from 'svelte';
 	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
 
+	import type { PostStoryblok } from '../../../../component-types-sb';
+
 	export let data;
 
 	// for storyblok live editor
 	if (data.story?.id && data.previewMode) {
 		onMount(() => {
-			useStoryblokBridge(data.story!.id, (newStory) => (data.story = newStory));
+			useStoryblokBridge<PostStoryblok>(data.story!.id, (newStory) => (data.story = newStory));
 		});
 	}
 </script>

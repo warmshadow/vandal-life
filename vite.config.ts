@@ -5,6 +5,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import dotenv from 'dotenv';
 
+import type { ISbStoryData } from '@storyblok/svelte';
+
 import { DATA_DIR, CATEGORIES_DIR } from './src/utils/constants';
 
 export default defineConfig(() => {
@@ -36,10 +38,18 @@ function getStories() {
 				fs.mkdirSync(CATEGORIES_DIR, { recursive: true });
 			}
 
-			const { data: foldersData } = await Storyblok.get('spaces/267541/stories/', {
+			const { data: foldersData } = (await Storyblok.get('spaces/267541/stories/', {
 				folder_only: true
-			});
-			const foldersJson = JSON.stringify(foldersData, null, 2);
+			})) as { data: { stories: ISbStoryData[] } };
+			const foldersJson = JSON.stringify(
+				{
+					...foldersData,
+					// @TODO remove this filtering when anything-goes is one story
+					stories: foldersData.stories.filter(({ full_slug }) => full_slug !== 'anything-goes')
+				},
+				null,
+				2
+			);
 			fs.writeFileSync(`${DATA_DIR}/folders.json`, foldersJson);
 
 			foldersData.stories.forEach(async (folder: { slug: string }) => {

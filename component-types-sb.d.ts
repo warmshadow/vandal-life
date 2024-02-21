@@ -79,11 +79,11 @@ export interface MessageCardsStoryblok {
 
 export interface PostStoryblok {
 	featuredImage?: AssetStoryblok;
-	title?: string;
+	gallery?: GalleryStoryblok[];
+	title: string;
 	subtitle?: string;
 	authors?: string;
 	content?: string;
-	gallery?: GalleryStoryblok[];
 	_uid: string;
 	component: 'post';
 	[k: string]: any;
@@ -95,5 +95,3 @@ export interface SmallTextStoryblok {
 	component: 'smallText';
 	[k: string]: any;
 }
-
-export type StoryWithContent<TContent> = StoryblokStory<TContent>;
