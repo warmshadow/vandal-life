@@ -5,9 +5,9 @@
 	export let data;
 
 	// for storyblok live editor
-	if (data.previewMode) {
+	if (data.story?.id && data.previewMode) {
 		onMount(() => {
-			useStoryblokBridge(data.story.id, (newStory) => (data.story = newStory));
+			useStoryblokBridge(data.story!.id, (newStory) => (data.story = newStory));
 		});
 	}
 </script>
