@@ -5,7 +5,6 @@ import Page from '../components/Page.svelte';
 import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 
-/** @type {import('./$types').LayoutLoad} */
 export async function load({ url: { pathname }, data }) {
 	storyblokInit({
 		accessToken: PUBLIC_STORYBLOK_TOKEN,
@@ -16,7 +15,7 @@ export async function load({ url: { pathname }, data }) {
 			CardBigText
 		}
 	});
-	let storyblokApi = await useStoryblokApi();
+	const storyblokApi = useStoryblokApi();
 
 	return {
 		storyblokApi: storyblokApi,

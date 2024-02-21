@@ -5,7 +5,7 @@
 	import CardBigText from '$lib/CardBigText.svelte';
 	import ScrollToTop from '$lib/ScrollToTop.svelte';
 
-	export let data: any; // @TODO add typing
+	export let data;
 </script>
 
 <div class="layout-wrapper">

@@ -1,10 +1,10 @@
 import { browser } from '$app/environment';
+import type { ISbStoryData } from '@storyblok/svelte';
 
-// @TODO check how to do typing in javascript file
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import type { HomePageStoryblok } from '../../component-types-sb';
+
 export async function load({ data, parent }) {
-	let story;
+	let story: ISbStoryData<HomePageStoryblok> | undefined;
 
 	if (browser) {
 		const { storyblokApi } = await parent();
@@ -22,8 +22,8 @@ export async function load({ data, parent }) {
 	}));
 
 	return {
+		...data, // story from +page.server.js
 		story,
-		categoriesStories: latestCategoriesStories,
-		...data // homeStory from +page.server.js
+		categoriesStories: latestCategoriesStories
 	};
 }
