@@ -4,7 +4,6 @@ export async function load({ url: { pathname }, parent }) {
 	const categoryStories = categoriesStories.find((category) => `/${category.slug}` === pathname);
 
 	return {
-		categoryStories,
-		isIdeaPage: categoryStories.data.stories.every((story) => story.content.component === 'idea')
+		categoryStories
 	};
 }

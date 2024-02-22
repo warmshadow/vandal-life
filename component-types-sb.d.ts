@@ -1,5 +1,13 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface AdStoryblok {
+	title: string;
+	content: string;
+	_uid: string;
+	component: 'ad';
+	[k: string]: any;
+}
+
 export interface BigTextStoryblok {
 	leftText: string;
 	rightText?: string;
@@ -37,8 +45,7 @@ export interface HomePageStoryblok {
 }
 
 export interface IdeaStoryblok {
-	title?: string;
-	content?: string;
+	ads: AdStoryblok[];
 	_uid: string;
 	component: 'idea';
 	[k: string]: any;

@@ -41,15 +41,7 @@ function getStories() {
 			const { data: foldersData } = (await Storyblok.get('spaces/267541/stories/', {
 				folder_only: true
 			})) as { data: { stories: ISbStoryData[] } };
-			const foldersJson = JSON.stringify(
-				{
-					...foldersData,
-					// @TODO remove this filtering when anything-goes is one story
-					stories: foldersData.stories.filter(({ full_slug }) => full_slug !== 'anything-goes')
-				},
-				null,
-				2
-			);
+			const foldersJson = JSON.stringify(foldersData, null, 2);
 			fs.writeFileSync(`${DATA_DIR}/folders.json`, foldersJson);
 
 			foldersData.stories.forEach(async (folder: { slug: string }) => {
@@ -76,6 +68,15 @@ function getStories() {
 
 			const homeJson = JSON.stringify(homeStoryData, null, 2);
 			fs.writeFileSync(`${DATA_DIR}/home.json`, homeJson);
+
+			const {
+				data: { story: anythingGoesStoryData }
+			} = await Storyblok.get('cdn/stories/anything-goes', {
+				version: 'draft' // @TODO update when live and use other access key only for published
+			});
+
+			const anythingGoesJson = JSON.stringify(anythingGoesStoryData, null, 2);
+			fs.writeFileSync(`${DATA_DIR}/anything-goes.json`, anythingGoesJson);
 		}
 	};
 }
