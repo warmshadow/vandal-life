@@ -3,10 +3,10 @@ import path from 'path';
 import type { ISbStoryData } from '@storyblok/svelte';
 
 import { DATA_DIR, CATEGORIES_DIR } from '../utils/constants';
-import type { PostStoryblok } from '../../component-types-sb';
+import type { PostStoryblok, IdeaStoryblok } from '../../component-types-sb';
 
 interface CategoriesStories {
-	stories: ISbStoryData<PostStoryblok>[];
+	stories: ISbStoryData<PostStoryblok | IdeaStoryblok>[];
 }
 
 export async function load() {
@@ -41,6 +41,12 @@ export async function load() {
 				}
 			})
 		);
+
+		// adding separate anything goes page
+		const anythingGoesData = await fsp.readFile(path.join(DATA_DIR, 'anything-goes.json'), 'utf-8');
+		const anythingGoesJsonData: ISbStoryData<IdeaStoryblok> = JSON.parse(anythingGoesData);
+		categories.push({ name: anythingGoesJsonData.name, slug: anythingGoesJsonData.slug });
+		categoriesStoriesObj['anything-goes'] = { stories: [anythingGoesJsonData] };
 
 		return {
 			categories,

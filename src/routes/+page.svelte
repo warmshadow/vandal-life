@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { type ComponentProps, onMount } from 'svelte';
 	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
 
 	import CategorySection from '$lib/sections/CategorySection.svelte';
@@ -13,7 +13,7 @@
 	export let data;
 
 	let showModal = false;
-	let modalContent = { title: '', description: undefined };
+	let modalContent: ComponentProps<ModalContent> = { title: '', description: undefined };
 
 	// for storyblok live editor
 	if (data.story.id && data.previewMode) {
@@ -31,20 +31,42 @@
 			{/each}
 		{/if}
 
-		<CategorySection
-			data={{
-				categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
-				// @TODO altOrder will be an exception for anything-goes
-				cards: category.data.stories.map((story) => ({
-					src: placeholder,
-					title: story.content.title,
-					description: story.content.subtitle,
-					link: { to: `/${story.full_slug}` }
-				})),
-				categoryLink: `/${category.slug}`
-			}}
-			altOrder={!(index % 2)}
-		/>
+		{#if category.data.stories[0].content.component !== 'idea'}
+			<!-- post stories -->
+			<CategorySection
+				data={{
+					categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
+					cards: category.data.stories.map((story) => ({
+						src: placeholder,
+						title: story.content.title,
+						description: story.content.subtitle,
+						link: { to: `/${story.full_slug}` }
+					})),
+					categoryLink: `/${category.slug}`
+				}}
+				altOrder={!(index % 2)}
+			/>
+		{:else}
+			<!-- idea story -->
+			<CategorySection
+				data={{
+					categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
+					// here slicing first 3 ads
+					cards: category.data.stories[0].content.ads.slice(0, 3).map((ad) => ({
+						title: ad.title,
+						link: {
+							label: 'Explore the idea',
+							onClick: () => {
+								modalContent = { title: ad.title, description: ad.content };
+								showModal = true;
+							}
+						}
+					})),
+					categoryLink: `/${category.slug}`
+				}}
+				altOrder={false}
+			/>
+		{/if}
 	{/each}
 {/if}
 

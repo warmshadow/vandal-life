@@ -4,13 +4,15 @@ import path from 'path';
 import { DATA_DIR } from '../utils/constants';
 
 import type { ISbStoryData } from '@storyblok/svelte';
-import type { HomePageStoryblok, PostStoryblok } from '../../component-types-sb';
+import type { HomePageStoryblok } from '../../component-types-sb';
 
 export async function load({ parent }) {
 	const { categoriesStories } = await parent();
 	const latestCategoriesStories = categoriesStories.map((category) => ({
 		...category,
-		data: { stories: category.data.stories.slice(0, 3) as ISbStoryData<PostStoryblok>[] }
+		data: {
+			stories: category.data.stories.slice(0, 3) // this slice won't affect idea content type story as it's only one
+		}
 	}));
 
 	try {
