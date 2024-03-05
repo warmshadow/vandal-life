@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 import type { ISbStoryData } from '@storyblok/svelte';
 
 import { DATA_DIR, CATEGORIES_DIR } from './src/utils/constants';
+import type { CategoryNameStoryblok, HomePageStoryblok } from './component-types-sb';
 
 export default defineConfig(() => {
 	dotenv.config({ path: `.env` });
@@ -29,8 +30,8 @@ function getStories() {
 				cache: {
 					clear: 'auto',
 					type: 'memory'
-				},
-				oauthToken: process.env.STORYBLOK_OAUTH_TOKEN
+				}
+				// @TODO delete oauth token from CF
 			});
 
 			// create directory for data and categories
@@ -38,13 +39,29 @@ function getStories() {
 				fs.mkdirSync(CATEGORIES_DIR, { recursive: true });
 			}
 
-			const { data: foldersData } = (await Storyblok.get('spaces/267541/stories/', {
-				folder_only: true
-			})) as { data: { stories: ISbStoryData[] } };
+			// fetching home story
+			const {
+				data: { story: homeStoryData }
+			}: { data: { story: ISbStoryData<HomePageStoryblok> } } = await Storyblok.get(
+				'cdn/stories/home',
+				{
+					version: 'draft' // @TODO update when live and use other access key only for published
+				}
+			);
+			const homeJson = JSON.stringify(homeStoryData, null, 2);
+			fs.writeFileSync(`${DATA_DIR}/home.json`, homeJson);
+
+			// selecting categories listed in home page
+			const foldersData = {
+				categories: homeStoryData.content.listOfMessages.filter(
+					(item) => item.component === 'categoryName'
+				)
+			} as { categories: CategoryNameStoryblok[] };
 			const foldersJson = JSON.stringify(foldersData, null, 2);
 			fs.writeFileSync(`${DATA_DIR}/folders.json`, foldersJson);
 
-			foldersData.stories.forEach(async (folder: { slug: string }) => {
+			// fetching post stories by category
+			foldersData.categories.forEach(async (folder) => {
 				// @TODO implement fetching all stories using per_page as default is 25, and max received in one call is 100
 				const { data: categoryData } = await Storyblok.get('cdn/stories', {
 					version: 'draft', // @TODO update when live and use other access key only for published
@@ -60,15 +77,7 @@ function getStories() {
 				}
 			});
 
-			const {
-				data: { story: homeStoryData }
-			} = await Storyblok.get('cdn/stories/home', {
-				version: 'draft' // @TODO update when live and use other access key only for published
-			});
-
-			const homeJson = JSON.stringify(homeStoryData, null, 2);
-			fs.writeFileSync(`${DATA_DIR}/home.json`, homeJson);
-
+			// fetching anything goes page
 			const {
 				data: { story: anythingGoesStoryData }
 			} = await Storyblok.get('cdn/stories/anything-goes', {

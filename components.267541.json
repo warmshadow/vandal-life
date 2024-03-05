@@ -1,395 +1,409 @@
 {
-  "components": [
-    {
-      "name": "ad",
-      "display_name": null,
-      "created_at": "2024-02-22T20:22:51.905Z",
-      "updated_at": "2024-02-22T21:07:43.687Z",
-      "id": 5383266,
-      "schema": {
-        "title": {
-          "type": "text",
-          "required": true
-        },
-        "content": {
-          "type": "markdown",
-          "required": true
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "ad",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "bigText",
-      "display_name": null,
-      "created_at": "2024-01-05T21:25:51.289Z",
-      "updated_at": "2024-01-05T22:29:36.522Z",
-      "id": 5124916,
-      "schema": {
-        "leftText": {
-          "type": "textarea",
-          "required": true,
-          "key": "BigText1",
-          "pos": 0
-        },
-        "rightText": {
-          "type": "textarea",
-          "key": "BigText2",
-          "pos": 1
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "bigText",
-      "component_group_uuid": "620d6d4d-58a2-4f72-836d-4234d640c78a",
-      "color": null,
-      "icon": null,
-      "component_group_name": "Message Card Content"
-    },
-    {
-      "name": "CardBigText",
-      "display_name": null,
-      "created_at": "2023-12-16T17:52:52.490Z",
-      "updated_at": "2023-12-16T17:55:47.516Z",
-      "id": 5049800,
-      "schema": {
-        "text": {
-          "type": "text"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "CardBigText",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "gallery",
-      "display_name": null,
-      "created_at": "2024-01-09T19:40:07.818Z",
-      "updated_at": "2024-01-09T19:59:01.641Z",
-      "id": 5143037,
-      "schema": {
-        "columns": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "galleryColumn"
-          ],
-          "component_group_whitelist": [],
-          "minimum": 1,
-          "key": "column",
-          "pos": 0
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "gallery",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "galleryColumn",
-      "display_name": null,
-      "created_at": "2024-01-09T19:40:59.151Z",
-      "updated_at": "2024-01-09T19:42:58.771Z",
-      "id": 5143038,
-      "schema": {
-        "images": {
-          "type": "bloks",
-          "required": false,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "image"
-          ],
-          "minimum": 1
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "galleryColumn",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "homePage",
-      "display_name": null,
-      "created_at": "2024-01-05T21:30:01.936Z",
-      "updated_at": "2024-01-05T22:22:35.822Z",
-      "id": 5124952,
-      "schema": {
-        "listOfMessages": {
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "messageCards"
-          ],
-          "required": true
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": true,
-      "preview_tmpl": null,
-      "is_nestable": false,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "homePage",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "idea",
-      "display_name": null,
-      "created_at": "2024-01-07T19:20:53.142Z",
-      "updated_at": "2024-02-22T20:26:02.912Z",
-      "id": 5129013,
-      "schema": {
-        "ads": {
-          "type": "bloks",
-          "required": true,
-          "minimum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "ad"
-          ]
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": true,
-      "preview_tmpl": null,
-      "is_nestable": false,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "idea",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "image",
-      "display_name": null,
-      "created_at": "2024-01-09T19:41:50.967Z",
-      "updated_at": "2024-01-09T19:42:09.321Z",
-      "id": 5143039,
-      "schema": {
-        "image": {
-          "type": "asset"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "image",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "messageCard",
-      "display_name": null,
-      "created_at": "2024-01-05T21:21:39.596Z",
-      "updated_at": "2024-01-06T00:12:44.538Z",
-      "id": 5124885,
-      "schema": {
-        "content": {
-          "type": "bloks",
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_whitelist": [],
-          "component_group_whitelist": [
-            "620d6d4d-58a2-4f72-836d-4234d640c78a"
-          ],
-          "maximum": 4,
-          "required": true,
-          "key": "cardContent",
-          "pos": 0
-        },
-        "variant": {
-          "type": "option",
-          "use_uuid": true,
-          "options": [
-            {
-              "_uid": "b5bdf74c-6614-42c7-adde-da419842dd24",
-              "name": "Primary",
-              "value": "primary"
-            },
-            {
-              "_uid": "0892c1e2-b932-4886-be7e-49b7e5d7bb64",
-              "value": "secondary",
-              "name": "Secondary"
-            }
-          ],
-          "default_value": "primary",
-          "exclude_empty_option": true
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "messageCard",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "messageCards",
-      "display_name": null,
-      "created_at": "2024-01-05T22:13:00.512Z",
-      "updated_at": "2024-01-05T22:27:24.647Z",
-      "id": 5125048,
-      "schema": {
-        "cards": {
-          "type": "bloks",
-          "maximum": 2,
-          "minimum": 1,
-          "required": true,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "messageCard"
-          ],
-          "key": "card",
-          "pos": 0
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "messageCards",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "post",
-      "display_name": null,
-      "created_at": "2023-12-17T19:12:25.242Z",
-      "updated_at": "2024-02-21T20:46:27.410Z",
-      "id": 5051907,
-      "schema": {
-        "featuredImage": {
-          "type": "asset",
-          "pos": 0,
-          "filetypes": [
-            "images"
-          ],
-          "allow_external_url": true,
-          "required": false
-        },
-        "gallery": {
-          "type": "bloks",
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "gallery"
-          ],
-          "component_group_whitelist": []
-        },
-        "title": {
-          "type": "text",
-          "pos": 1,
-          "required": true
-        },
-        "subtitle": {
-          "type": "text",
-          "pos": 2
-        },
-        "authors": {
-          "type": "textarea",
-          "pos": 3
-        },
-        "content": {
-          "type": "markdown",
-          "pos": 4
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": true,
-      "preview_tmpl": null,
-      "is_nestable": false,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "post",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
-      "name": "smallText",
-      "display_name": null,
-      "created_at": "2024-01-05T21:26:45.954Z",
-      "updated_at": "2024-01-05T21:49:13.832Z",
-      "id": 5124951,
-      "schema": {
-        "text": {
-          "type": "textarea"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "smallText",
-      "component_group_uuid": "620d6d4d-58a2-4f72-836d-4234d640c78a",
-      "color": null,
-      "icon": null,
-      "component_group_name": "Message Card Content"
-    }
-  ]
+	"components": [
+		{
+			"name": "ad",
+			"display_name": null,
+			"created_at": "2024-02-22T20:22:51.905Z",
+			"updated_at": "2024-02-22T21:07:43.687Z",
+			"id": 5383266,
+			"schema": {
+				"title": {
+					"type": "text",
+					"required": true
+				},
+				"content": {
+					"type": "markdown",
+					"required": true
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "ad",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "bigText",
+			"display_name": null,
+			"created_at": "2024-01-05T21:25:51.289Z",
+			"updated_at": "2024-01-05T22:29:36.522Z",
+			"id": 5124916,
+			"schema": {
+				"leftText": {
+					"type": "textarea",
+					"required": true,
+					"key": "BigText1",
+					"pos": 0
+				},
+				"rightText": {
+					"type": "textarea",
+					"key": "BigText2",
+					"pos": 1
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "bigText",
+			"component_group_uuid": "620d6d4d-58a2-4f72-836d-4234d640c78a",
+			"color": null,
+			"icon": null,
+			"component_group_name": "Message Card Content"
+		},
+		{
+			"name": "CardBigText",
+			"display_name": null,
+			"created_at": "2023-12-16T17:52:52.490Z",
+			"updated_at": "2023-12-16T17:55:47.516Z",
+			"id": 5049800,
+			"schema": {
+				"text": {
+					"type": "text"
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "CardBigText",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "categoryName",
+			"display_name": null,
+			"created_at": "2024-02-28T20:22:26.437Z",
+			"updated_at": "2024-03-03T16:33:52.467Z",
+			"id": 5413333,
+			"schema": {
+				"slug": {
+					"type": "text",
+					"pos": 0,
+					"required": true
+				},
+				"title": {
+					"type": "textarea",
+					"pos": 1,
+					"required": true
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": true,
+			"preview_tmpl": null,
+			"is_nestable": false,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "categoryName",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "gallery",
+			"display_name": null,
+			"created_at": "2024-01-09T19:40:07.818Z",
+			"updated_at": "2024-01-09T19:59:01.641Z",
+			"id": 5143037,
+			"schema": {
+				"columns": {
+					"type": "bloks",
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["galleryColumn"],
+					"component_group_whitelist": [],
+					"minimum": 1,
+					"key": "column",
+					"pos": 0
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "gallery",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "galleryColumn",
+			"display_name": null,
+			"created_at": "2024-01-09T19:40:59.151Z",
+			"updated_at": "2024-01-09T19:42:58.771Z",
+			"id": 5143038,
+			"schema": {
+				"images": {
+					"type": "bloks",
+					"required": false,
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["image"],
+					"minimum": 1
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "galleryColumn",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "homePage",
+			"display_name": null,
+			"created_at": "2024-01-05T21:30:01.936Z",
+			"updated_at": "2024-03-03T16:34:32.549Z",
+			"id": 5124952,
+			"schema": {
+				"listOfMessages": {
+					"type": "bloks",
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["messageCards", "categoryName"],
+					"required": true
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": true,
+			"preview_tmpl": null,
+			"is_nestable": false,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "homePage",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "idea",
+			"display_name": null,
+			"created_at": "2024-01-07T19:20:53.142Z",
+			"updated_at": "2024-02-22T20:26:02.912Z",
+			"id": 5129013,
+			"schema": {
+				"ads": {
+					"type": "bloks",
+					"required": true,
+					"minimum": 1,
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["ad"]
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": true,
+			"preview_tmpl": null,
+			"is_nestable": false,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "idea",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "image",
+			"display_name": null,
+			"created_at": "2024-01-09T19:41:50.967Z",
+			"updated_at": "2024-01-09T19:42:09.321Z",
+			"id": 5143039,
+			"schema": {
+				"image": {
+					"type": "asset"
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "image",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "messageCard",
+			"display_name": null,
+			"created_at": "2024-01-05T21:21:39.596Z",
+			"updated_at": "2024-01-06T00:12:44.538Z",
+			"id": 5124885,
+			"schema": {
+				"content": {
+					"type": "bloks",
+					"restrict_type": "groups",
+					"restrict_components": true,
+					"component_whitelist": [],
+					"component_group_whitelist": ["620d6d4d-58a2-4f72-836d-4234d640c78a"],
+					"maximum": 4,
+					"required": true,
+					"key": "cardContent",
+					"pos": 0
+				},
+				"variant": {
+					"type": "option",
+					"use_uuid": true,
+					"options": [
+						{
+							"_uid": "b5bdf74c-6614-42c7-adde-da419842dd24",
+							"name": "Primary",
+							"value": "primary"
+						},
+						{
+							"_uid": "0892c1e2-b932-4886-be7e-49b7e5d7bb64",
+							"value": "secondary",
+							"name": "Secondary"
+						}
+					],
+					"default_value": "primary",
+					"exclude_empty_option": true
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "messageCard",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "messageCards",
+			"display_name": null,
+			"created_at": "2024-01-05T22:13:00.512Z",
+			"updated_at": "2024-01-05T22:27:24.647Z",
+			"id": 5125048,
+			"schema": {
+				"cards": {
+					"type": "bloks",
+					"maximum": 2,
+					"minimum": 1,
+					"required": true,
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["messageCard"],
+					"key": "card",
+					"pos": 0
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "messageCards",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "post",
+			"display_name": null,
+			"created_at": "2023-12-17T19:12:25.242Z",
+			"updated_at": "2024-02-21T20:46:27.410Z",
+			"id": 5051907,
+			"schema": {
+				"featuredImage": {
+					"type": "asset",
+					"pos": 0,
+					"filetypes": ["images"],
+					"allow_external_url": true,
+					"required": false
+				},
+				"gallery": {
+					"type": "bloks",
+					"maximum": 1,
+					"restrict_type": "",
+					"restrict_components": true,
+					"component_whitelist": ["gallery"],
+					"component_group_whitelist": []
+				},
+				"title": {
+					"type": "text",
+					"pos": 1,
+					"required": true
+				},
+				"subtitle": {
+					"type": "text",
+					"pos": 2
+				},
+				"authors": {
+					"type": "textarea",
+					"pos": 3
+				},
+				"content": {
+					"type": "markdown",
+					"pos": 4
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": true,
+			"preview_tmpl": null,
+			"is_nestable": false,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "post",
+			"component_group_uuid": null,
+			"color": null,
+			"icon": null
+		},
+		{
+			"name": "smallText",
+			"display_name": null,
+			"created_at": "2024-01-05T21:26:45.954Z",
+			"updated_at": "2024-01-05T21:49:13.832Z",
+			"id": 5124951,
+			"schema": {
+				"text": {
+					"type": "textarea"
+				}
+			},
+			"image": null,
+			"preview_field": null,
+			"is_root": false,
+			"preview_tmpl": null,
+			"is_nestable": true,
+			"all_presets": [],
+			"preset_id": null,
+			"real_name": "smallText",
+			"component_group_uuid": "620d6d4d-58a2-4f72-836d-4234d640c78a",
+			"color": null,
+			"icon": null,
+			"component_group_name": "Message Card Content"
+		}
+	]
 }

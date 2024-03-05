@@ -23,6 +23,14 @@ export interface CardBigTextStoryblok {
 	[k: string]: any;
 }
 
+export interface CategoryNameStoryblok {
+	slug: string;
+	title: string;
+	_uid: string;
+	component: 'categoryName';
+	[k: string]: any;
+}
+
 export interface GalleryStoryblok {
 	columns?: GalleryColumnStoryblok[];
 	_uid: string;
@@ -38,7 +46,7 @@ export interface GalleryColumnStoryblok {
 }
 
 export interface HomePageStoryblok {
-	listOfMessages: MessageCardsStoryblok[];
+	listOfMessages: (MessageCardsStoryblok | CategoryNameStoryblok)[];
 	_uid: string;
 	component: 'homePage';
 	[k: string]: any;

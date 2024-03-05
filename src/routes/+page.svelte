@@ -25,8 +25,8 @@
 
 {#if data.categoriesStories}
 	{#each data.categoriesStories as category, index}
-		{#if data.story?.content?.listOfMessages[index]}
-			{#each data.story.content.listOfMessages[index].cards as card}
+		{#if data.story.content.listOfMessages.filter((item) => item.component === 'messageCards')[index]}
+			{#each data.story.content.listOfMessages.filter((item) => item.component === 'messageCards')[index].cards as card}
 				<StoryblokComponent blok={card} />
 			{/each}
 		{/if}
@@ -35,8 +35,18 @@
 			<!-- post stories -->
 			<CategorySection
 				data={{
-					categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
-					cards: category.data.stories.map((story) => ({
+					categoryCard: {
+						content: [
+							{
+								component: 'bigText',
+								leftText: data.story.content.listOfMessages.find(
+									(item) => item.slug === category.slug
+								)?.title
+							}
+						]
+					},
+					// slicing first three posts
+					cards: category.data.stories.slice(0, 3).map((story) => ({
 						src: placeholder,
 						title: story.content.title,
 						description: story.content.subtitle,
@@ -51,7 +61,7 @@
 			<CategorySection
 				data={{
 					categoryCard: { content: [{ component: 'bigText', leftText: category.name }] },
-					// here slicing first 3 ads
+					// slicing first 3 ads
 					cards: category.data.stories[0].content.ads.slice(0, 3).map((ad) => ({
 						title: ad.title,
 						link: {

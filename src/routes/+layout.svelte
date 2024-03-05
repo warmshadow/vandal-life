@@ -12,7 +12,13 @@
 	<Header
 		links={[
 			{ label: 'home', link: '/' },
-			...data.categories.map(({ name, slug }) => ({ label: name, link: `/${slug}` }))
+			...data.homeStory.content.listOfMessages
+				.filter((item) => item.component === 'categoryName')
+				.filter((item) => data.categories.some(({ slug }) => slug === item.slug))
+				.map(({ title: name, slug }) => ({
+					label: name.replaceAll(`\n`, ' '),
+					link: `/${slug}`
+				}))
 		]}
 		categoryName={data.currentCategory}
 	/>

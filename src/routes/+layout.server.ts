@@ -3,7 +3,12 @@ import path from 'path';
 import type { ISbStoryData } from '@storyblok/svelte';
 
 import { DATA_DIR, CATEGORIES_DIR } from '../utils/constants';
-import type { PostStoryblok, IdeaStoryblok } from '../../component-types-sb';
+import type {
+	CategoryNameStoryblok,
+	PostStoryblok,
+	HomePageStoryblok,
+	IdeaStoryblok
+} from '../../component-types-sb';
 
 interface CategoriesStories {
 	stories: ISbStoryData<PostStoryblok | IdeaStoryblok>[];
@@ -12,12 +17,12 @@ interface CategoriesStories {
 export async function load() {
 	try {
 		const data = await fsp.readFile(path.join(DATA_DIR, 'folders.json'), 'utf-8');
-		const jsonData: CategoriesStories = JSON.parse(data);
+		const jsonData: { categories: CategoryNameStoryblok[] } = JSON.parse(data);
 
 		// only categories that have stories
-		const categories = jsonData.stories
+		const categories = jsonData.categories
 			.filter(({ slug }) => fs.existsSync(`${CATEGORIES_DIR}/${slug}.json`))
-			.map(({ name, slug }) => ({ name, slug }));
+			.map(({ slug, title: name }) => ({ name, slug }));
 
 		const categoriesStoriesObj: { [k: string]: CategoriesStories } = {};
 
@@ -48,13 +53,19 @@ export async function load() {
 		categories.push({ name: anythingGoesJsonData.name, slug: anythingGoesJsonData.slug });
 		categoriesStoriesObj['anything-goes'] = { stories: [anythingGoesJsonData] };
 
+		// reading home json
+		const filePath = path.join(DATA_DIR, 'home.json');
+		const homeData = await fsp.readFile(filePath, 'utf-8');
+		const homeStoryData: ISbStoryData<HomePageStoryblok> = JSON.parse(homeData);
+
 		return {
 			categories,
 			categoriesStories: categories.map(({ name, slug }) => ({
 				name,
 				slug,
 				data: categoriesStoriesObj[slug]
-			}))
+			})),
+			homeStory: homeStoryData
 		};
 	} catch (error) {
 		console.error('Error reading files:', error);
