@@ -10,7 +10,7 @@ import type {
 	IdeaStoryblok
 } from '../../component-types-sb';
 
-const getStoryData = async ({
+export const getStoryData = async ({
 	slug,
 	startsWith,
 	storyblokApi,

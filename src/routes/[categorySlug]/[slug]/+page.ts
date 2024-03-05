@@ -3,6 +3,8 @@ import { browser } from '$app/environment';
 import type { ISbStoryData } from '@storyblok/svelte';
 import type { PostStoryblok } from '../../../../component-types-sb';
 
+import { getStoryData } from '../../../utils/helpers';
+
 export async function load({ data, url, parent }) {
 	if (browser) {
 		const searchParams = new URLSearchParams(url.search);
@@ -11,16 +13,17 @@ export async function load({ data, url, parent }) {
 		if (storyId) {
 			try {
 				const { storyblokApi } = await parent();
-				const dataStory: { data: { story: ISbStoryData<PostStoryblok> } } = await storyblokApi.get(
-					`cdn/stories/${storyId}`,
-					{
-						version: 'draft'
-					}
-				);
+
+				const {
+					data: { story }
+				}: { data: { story: ISbStoryData<PostStoryblok> } } = await getStoryData({
+					slug: storyId,
+					storyblokApi
+				});
 
 				return {
 					...data,
-					story: dataStory.data.story,
+					story,
 					previewMode: true
 				};
 			} catch {
