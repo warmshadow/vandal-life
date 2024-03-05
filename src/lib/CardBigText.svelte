@@ -7,7 +7,7 @@
 	export let isCentered: boolean | undefined = false;
 </script>
 
-<div class={`container ${variant}`}>
+<div class={`container ${variant} ${isCentered && 'centered'}`}>
 	<div class="content">
 		{#each content as { component, text, leftText, rightText }}
 			{#if component === 'smallText'}
@@ -41,10 +41,6 @@
 		height: 100%;
 	}
 
-	/* .category-name-wrapper :global(h1) {
-		width: min-content;
-	} */
-
 	.container.secondary {
 		background-color: var(--black);
 	}
@@ -75,16 +71,16 @@
 		}
 	}
 
-	@media (min-width: 1180px) {
-		/* .container {
+	@media (min-width: 1181px) {
+		.container:not(.centered) {
 			padding: 48px 40px;
-		} */
+		}
 	}
 
 	@media (min-width: 1460px) {
-		/* .container {
+		.container:not(.centered) {
 			padding: 48px 128px;
-		} */
+		}
 
 		.content :global(p) {
 			font-size: 24px;
