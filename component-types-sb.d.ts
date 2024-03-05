@@ -46,7 +46,7 @@ export interface GalleryColumnStoryblok {
 }
 
 export interface HomePageStoryblok {
-	listOfMessages: (MessageCardsStoryblok | CategoryNameStoryblok)[];
+	listOfBlocks: (CategoryNameStoryblok | MessageCardStoryblok)[];
 	_uid: string;
 	component: 'homePage';
 	[k: string]: any;

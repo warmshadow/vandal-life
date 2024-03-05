@@ -12,7 +12,7 @@
 	<Header
 		links={[
 			{ label: 'home', link: '/' },
-			...data.homeStory.content.listOfMessages
+			...data.homeStory.content.listOfBlocks
 				.filter((item) => item.component === 'categoryName')
 				.filter((item) => data.categories.some(({ slug }) => slug === item.slug))
 				.map(({ title: name, slug }) => ({

@@ -10,7 +10,9 @@ export async function load() {
 	try {
 		const filePath = path.join(DATA_DIR, `anything-goes.json`);
 		const data = await fsp.readFile(filePath, 'utf-8');
-		const jsonData: ISbStoryData<IdeaStoryblok> = JSON.parse(data);
+		const {
+			data: { story: jsonData }
+		}: { data: { story: ISbStoryData<IdeaStoryblok> } } = JSON.parse(data);
 
 		return { story: jsonData };
 	} catch (error) {
