@@ -11,11 +11,14 @@
 	// $page.url.pathname check to force recalculation when page changes
 	$: if (browser && $page.url.pathname) {
 		// calculating duration so the animation speed is same for all lengths of text
-		animationDuration =
-			document.getElementById('scrolling-text-id')!.getBoundingClientRect().width / 50;
-		animationStyle = animationDuration
-			? `-moz-animation: scroll-left ${animationDuration}s linear infinite; -webkit-animation: scroll-left ${animationDuration}s linear infinite; animation: scroll-left ${animationDuration}s linear infinite;`
-			: null;
+		const scrollingElement = document?.getElementById('scrolling-text-id');
+
+		if (scrollingElement) {
+			animationDuration = scrollingElement.getBoundingClientRect().width / 50;
+			animationStyle = animationDuration
+				? `-moz-animation: scroll-left ${animationDuration}s linear infinite; -webkit-animation: scroll-left ${animationDuration}s linear infinite; animation: scroll-left ${animationDuration}s linear infinite;`
+				: null;
+		}
 	}
 </script>
 

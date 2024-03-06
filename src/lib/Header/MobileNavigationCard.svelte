@@ -7,8 +7,8 @@
 </script>
 
 <div class="container">
-	{#each links as { label, link }}
-		<Button {label} {link} on:click />
+	{#each links as { label, link, isActive }}
+		<Button {label} {link} {isActive} on:click />
 	{/each}
 </div>
 

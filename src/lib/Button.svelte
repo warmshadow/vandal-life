@@ -1,10 +1,11 @@
 <script lang="ts">
 	export let label: string;
 	export let link: string | undefined = undefined;
+	export let isActive: boolean = false;
 </script>
 
 {#if !!link}
-	<a href={link} class="button body" on:click>{label}</a>
+	<a href={link} class="button body" class:active={isActive} on:click>{label}</a>
 {:else}
 	<button on:click class="button body">{label}</button>
 {/if}
@@ -22,7 +23,8 @@
 		border: 1px solid var(--black);
 	}
 
-	.button:hover {
+	.button:hover,
+	.button.active {
 		background-color: var(--black);
 		color: var(--white);
 	}

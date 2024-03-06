@@ -53,8 +53,8 @@
 		<MobileNav {categoryName} {links} />
 	</div>
 	<div class="desktop-nav-wrapper">
-		{#each links as { label, link }}
-			<Button {label} {link} />
+		{#each links as { label, link, isActive }}
+			<Button {label} {link} {isActive} />
 		{/each}
 	</div>
 </nav>
