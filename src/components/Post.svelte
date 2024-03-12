@@ -7,6 +7,8 @@
 	import Text from '$lib/Text.svelte';
 	import Gallery from './Gallery.svelte';
 
+	import { optimizeImage } from '../utils/image-helpers';
+
 	export let blok;
 	export let date;
 
@@ -15,32 +17,28 @@
 		const date = new Date(inputDate);
 		return date.toLocaleDateString('en-US', options);
 	};
-
-	let innerWidth;
-
-	const optimizeImage = (image, imageSize) => {
-		if (!image.filename) return null;
-
-		let imageSource = image.filename + `/m/${imageSize ?? ''}`;
-
-		if (image.focus) imageSource += `/filters:focal(${image.focus})`;
-
-		return imageSource;
-	};
-
-	$: renderedFeatureImage =
-		innerWidth && blok?.featuredImage
-			? optimizeImage(blok.featuredImage, innerWidth >= 700 ? '1512x500' : '660x400')
-			: undefined;
 </script>
-
-<svelte:window bind:innerWidth />
 
 {#key blok}
 	<div use:storyblokEditable={blok} class="container">
-		{#if renderedFeatureImage}
-			<div style="margin-bottom: 40px">
-				<img src={renderedFeatureImage} alt={blok.alt} style="max-width: 100%;" />
+		{#if blok?.featuredImage}
+			<div style="margin-bottom: 40px;">
+				<picture>
+					<source
+						media="(max-width: 699px)"
+						srcset={optimizeImage(blok.featuredImage, '1320x800')}
+					/>
+					<source
+						media="(min-width: 700px)"
+						srcset={optimizeImage(blok.featuredImage, '2000x660')}
+					/>
+					<!-- TODO pass alt from asset -->
+					<img
+						src={optimizeImage(blok.featuredImage, '2000x660')}
+						alt="featured"
+						class="featured-image"
+					/>
+				</picture>
 			</div>
 		{/if}
 		{#if blok.title}
@@ -91,6 +89,12 @@
 {/key}
 
 <style>
+	.featured-image {
+		width: 100%;
+		max-width: 100%;
+		border-radius: 12px;
+	}
+
 	.title-wrapper {
 		margin-bottom: 24px;
 	}
