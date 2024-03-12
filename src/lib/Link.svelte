@@ -47,6 +47,7 @@
 		color: var(--black);
 
 		cursor: pointer;
+		outline: none;
 	}
 
 	.link.default:hover {
