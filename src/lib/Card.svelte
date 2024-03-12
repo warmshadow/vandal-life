@@ -24,7 +24,7 @@
 
 <div class="container">
 	{#if !!src}
-		<div class="img-container" style="background-image: url({src})" />
+		<div class="img-container" style="background-image: url('{src}')" />
 	{/if}
 	<div class="content">
 		<div class="text-block">
