@@ -7,18 +7,49 @@
 	export let categoryName: string;
 
 	$: showNavigation = false;
+
+	function clickOutside(element: Element, callbackFunction: () => void) {
+		function onClick(event: MouseEvent) {
+			if (!element.contains(event.target as Node)) {
+				callbackFunction();
+			}
+		}
+
+		document.body.addEventListener('click', onClick);
+
+		return {
+			update(newCallbackFunction: () => void) {
+				callbackFunction = newCallbackFunction;
+			},
+			destroy() {
+				document.body.removeEventListener('click', onClick);
+			}
+		};
+	}
 </script>
 
 <ScrollingText {categoryName} />
 <button
 	class="hamburger-wrapper"
 	class:active={showNavigation}
-	on:click={() => (showNavigation = !showNavigation)}
+	on:click={(e) => {
+		if (!showNavigation) {
+			e.stopPropagation();
+		}
+		showNavigation = !showNavigation;
+	}}
 >
 	<HamburgerIcon />
 </button>
 {#if showNavigation}
-	<MobileNavigationCard links={$$restProps.links} on:click={() => (showNavigation = false)} />
+	<div
+		use:clickOutside={() => {
+			showNavigation = !showNavigation;
+		}}
+		class="navigation-card-wrapper"
+	>
+		<MobileNavigationCard links={$$restProps.links} on:click={() => (showNavigation = false)} />
+	</div>
 {/if}
 
 <style>
@@ -46,5 +77,13 @@
 	.hamburger-wrapper.active :global(#lines) {
 		stroke: var(--white);
 		transition: all 0.3s;
+	}
+
+	.navigation-card-wrapper {
+		position: absolute;
+		top: 101%;
+		left: 0;
+
+		width: 100%;
 	}
 </style>
