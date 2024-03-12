@@ -20,7 +20,7 @@
 	.fancy :global(h1) {
 		font-family: 'Folio', sans-serif;
 		line-height: 35px;
-		-webkit-text-stroke: 0.7px #000;
+		text-shadow: -1px -1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, 1px 1px 0 #000;
 	}
 
 	@media (max-width: 1460px) {
