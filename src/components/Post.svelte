@@ -21,7 +21,7 @@
 
 {#key blok}
 	<div use:storyblokEditable={blok} class="container">
-		{#if blok?.featuredImage}
+		{#if blok?.featuredImage?.filename}
 			<div style="margin-bottom: 40px;">
 				<picture>
 					<source
@@ -64,9 +64,13 @@
 				</div>
 			{/if}
 
-			{#if blok.content}
+			{#if !!blok.content.length}
 				<div class="body-wrapper">
-					<Text tag="p">{@html marked(blok.content)}</Text>
+					{#each blok.content as content}
+						{#if content.component === 'body'}
+							<Text tag="p">{@html marked(content.text)}</Text>
+						{/if}
+					{/each}
 				</div>
 			{/if}
 		</div>

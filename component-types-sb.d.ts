@@ -16,10 +16,10 @@ export interface BigTextStoryblok {
 	[k: string]: any;
 }
 
-export interface CardBigTextStoryblok {
+export interface BodyStoryblok {
 	text?: string;
 	_uid: string;
-	component: 'CardBigText';
+	component: 'body';
 	[k: string]: any;
 }
 
@@ -85,20 +85,13 @@ export interface MessageCardStoryblok {
 	[k: string]: any;
 }
 
-export interface MessageCardsStoryblok {
-	cards: MessageCardStoryblok[];
-	_uid: string;
-	component: 'messageCards';
-	[k: string]: any;
-}
-
 export interface PostStoryblok {
 	featuredImage?: AssetStoryblok;
 	gallery?: GalleryStoryblok[];
 	title: string;
 	subtitle?: string;
 	authors?: string;
-	content?: string;
+	content?: BodyStoryblok[];
 	_uid: string;
 	component: 'post';
 	[k: string]: any;
