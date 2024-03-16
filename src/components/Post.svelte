@@ -108,6 +108,11 @@
 		margin-top: 80px;
 	}
 
+	/* @TODO could affect future gallery, rethink selector */
+	.body-wrapper :global(img) {
+		max-width: 100%;
+	}
+
 	.authors-wrapper {
 		display: flex;
 		flex-direction: column;
