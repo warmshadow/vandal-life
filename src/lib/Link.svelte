@@ -10,10 +10,10 @@
 	export let onClick: (() => void) | undefined = undefined;
 
 	let tag = 'a';
-	if (!to && !!onClick) {
+	$: if (!to && !!onClick) {
 		tag = 'button';
 	}
-	const hrefProp = tag === 'a' ? { href: to } : {}; // to bypass typing error when passing href directly
+	$: hrefProp = tag === 'a' ? { href: to } : {}; // to bypass typing error when passing href directly
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
