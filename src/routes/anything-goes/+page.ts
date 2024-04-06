@@ -14,7 +14,7 @@ export async function load({ data, url, parent }) {
 				const dataStory: { data: { story: ISbStoryData<IdeaStoryblok> } } = await storyblokApi.get(
 					`cdn/stories/${storyId}`,
 					{
-						version: 'draft' // @TODO implement draft and published (or no need as published will be shown as draft as well?)
+						version: 'draft'
 					}
 				);
 

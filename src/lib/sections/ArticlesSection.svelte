@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ComponentProps } from 'svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
 
 	import Card from '$lib/Card.svelte';
 
@@ -9,7 +10,9 @@
 <div class="container">
 	<div class="grid-container">
 		{#each data as card}
-			<Card {...card} />
+			<div use:storyblokEditable={card}>
+				<Card {...card} />
+			</div>
 		{/each}
 	</div>
 </div>

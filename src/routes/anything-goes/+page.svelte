@@ -53,7 +53,8 @@
 					modalContent = { title: ad.title, description: ad.content };
 					showModal = true;
 				}
-			}
+			},
+			_editable: ad._editable // pasing so storyblokEditable works
 		}))}
 	/>
 {/if}
