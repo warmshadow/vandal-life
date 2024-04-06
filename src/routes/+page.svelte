@@ -37,8 +37,8 @@
 
 		{#if blok.component === 'categoryName'}
 			{@const category = data.categoriesStories.find((category) => category.slug === blok.slug)}
-			<div use:storyblokEditable={blok}>
-				{#if category}
+			{#if category}
+				<div use:storyblokEditable={blok}>
 					{#if category.data.stories[0].content.component !== 'idea'}
 						{@const index = allPostCategories.findIndex((category) => category.slug === blok.slug)}
 
@@ -93,8 +93,8 @@
 							altOrder={false}
 						/>
 					{/if}
-				{/if}
-			</div>
+				</div>
+			{/if}
 		{/if}
 	{/each}
 {/if}
