@@ -23,13 +23,15 @@
 </script>
 
 <div class="animation-container">
-	{#each Array.from({ length: 2 }) as _}
-		<span class="scrolling-text" id="scrolling-text-id" style={animationStyle}>
-			{#each Array.from({ length: 5 }) as _}
-				<Text tag="p">{categoryName}</Text>
-			{/each}
-		</span>
-	{/each}
+	{#key $page.url.pathname}
+		{#each Array.from({ length: 2 }) as _}
+			<span class="scrolling-text" id="scrolling-text-id" style={animationStyle}>
+				{#each Array.from({ length: 5 }) as _}
+					<Text tag="p">{categoryName}</Text>
+				{/each}
+			</span>
+		{/each}
+	{/key}
 </div>
 
 <style>
