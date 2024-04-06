@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BigText from '$lib/BigText.svelte';
 	import Text from '$lib/Text.svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
 
 	export let content: any; // @TODO add typing
 	export let variant: 'primary' | 'secondary' = 'primary';
@@ -9,17 +10,19 @@
 
 <div class={`container ${variant} ${isCentered && 'centered'}`}>
 	<div class="content">
-		{#each content as { component, text, leftText, rightText }}
-			{#if component === 'smallText'}
-				<Text tag="p" type="medium" color="white">{text}</Text>
+		{#each content as blok}
+			{#if blok.component === 'smallText'}
+				<div use:storyblokEditable={blok}>
+					<Text tag="p" type="medium" color="white">{blok.text}</Text>
+				</div>
 			{/if}
-			{#if component === 'bigText'}
-				<div class={`text-block ${isCentered && 'centered'}`}>
+			{#if blok.component === 'bigText'}
+				<div use:storyblokEditable={blok} class={`text-block ${isCentered && 'centered'}`}>
 					<div>
-						<BigText text={leftText} />
+						<BigText text={blok.leftText} />
 					</div>
-					{#if rightText}
-						<BigText text={rightText} />
+					{#if blok.rightText?.length}
+						<BigText text={blok.rightText} />
 					{/if}
 				</div>
 			{/if}
