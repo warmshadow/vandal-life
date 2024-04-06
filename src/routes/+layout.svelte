@@ -5,7 +5,6 @@
 
 	import { Header } from '$lib';
 	import CardBigText from '$lib/CardBigText.svelte';
-	import ScrollToTop from '$lib/ScrollToTop.svelte';
 
 	export let data;
 </script>
@@ -34,7 +33,8 @@
 			variant="secondary"
 		/>
 	</div>
-	<ScrollToTop />
+	<!-- uncomment if needed later -->
+	<!-- <ScrollToTop />  -->
 </div>
 
 <style>
