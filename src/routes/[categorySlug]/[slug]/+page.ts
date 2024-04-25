@@ -13,7 +13,6 @@ export async function load({ data, url, parent }) {
 		if (storyId) {
 			try {
 				const { storyblokApi } = await parent();
-
 				const {
 					data: { story }
 				}: { data: { story: ISbStoryData<PostStoryblok> } } = await getStoryData({
@@ -27,8 +26,7 @@ export async function load({ data, url, parent }) {
 					previewMode: true
 				};
 			} catch {
-				// catching error when retrieving nonexisting story, in this case returning initial static data from +page.server.ts
-				return { ...data };
+				throw new Error('No story for this page');
 			}
 		}
 	} else {

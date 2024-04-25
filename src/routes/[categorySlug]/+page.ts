@@ -3,6 +3,8 @@ import { browser } from '$app/environment';
 import type { ISbStoryData } from '@storyblok/svelte';
 import type { IdeaStoryblok } from '../../../component-types-sb';
 
+import { getStoryData } from '../../utils/helpers';
+
 export async function load({ data, url, parent }) {
 	if (browser) {
 		const searchParams = new URLSearchParams(url.search);
@@ -11,17 +13,16 @@ export async function load({ data, url, parent }) {
 		if (storyId) {
 			try {
 				const { storyblokApi } = await parent();
-				const dataStory: { data: { story: ISbStoryData<IdeaStoryblok> } } = await storyblokApi.get(
-					`cdn/stories/${storyId}`,
-					{
-						version: 'draft'
-					}
-				);
+				const {
+					data: { story }
+				}: { data: { story: ISbStoryData<IdeaStoryblok> } } = await getStoryData({
+					slug: storyId,
+					storyblokApi
+				});
 
-				return { ...data, story: dataStory.data.story, previewMode: true };
+				return { ...data, ideaStory: story, previewMode: true };
 			} catch {
-				// catching error when retrieving nonexisting story, in this case returning initial static data from +page.server.ts
-				return { ...data };
+				throw new Error('No story for this page');
 			}
 		}
 	} else {

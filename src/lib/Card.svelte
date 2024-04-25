@@ -2,24 +2,12 @@
 	import Text from '$lib/Text.svelte';
 	import Link from '$lib/Link.svelte';
 	import type { ComponentProps } from 'svelte';
+	import { shortenString } from '../utils/shortenString';
 
 	export let src: string | undefined = undefined;
 	export let title: string;
 	export let description: string | undefined = undefined;
 	export let link: ComponentProps<Link>;
-
-	const shortenString = (inputString: string, characterCount: number) => {
-		if (inputString.length <= characterCount) {
-			return inputString;
-		}
-
-		let shortened = inputString.slice(0, characterCount);
-
-		// Remove the last word if it's cut off
-		shortened = shortened.replace(/\s+\S*$/, '');
-
-		return `${shortened}...`;
-	};
 </script>
 
 <div class="container">

@@ -12,23 +12,22 @@ import type {
 
 export const getStoryData = async ({
 	slug,
-	startsWith,
 	storyblokApi,
+	params,
 	fsp,
 	path
 }: {
-	slug: string;
-	startsWith?: boolean;
+	slug?: string;
 	storyblokApi?: any;
+	params?: any;
 	fsp?: any;
 	path?: any;
 }) => {
 	if (storyblokApi) {
-		if (startsWith) {
-			return await storyblokApi.get(`cdn/stories`, { starts_with: `${slug}/`, version: 'draft' });
-		} else {
-			return await storyblokApi.get(`cdn/stories/${slug}`, { version: 'draft' });
-		}
+		return await storyblokApi.get(`cdn/stories/${params?.startsWith ? '' : slug}`, {
+			version: 'draft',
+			...params
+		});
 	} else if (path && fsp) {
 		const filePath = path.join(DATA_DIR, `${slug}.json`);
 		const data = await fsp.readFile(filePath, 'utf-8');
@@ -64,6 +63,23 @@ export const fetchLayoutData = async ({
 
 	const fetchProps = environment === 'server' ? { path, fsp } : { storyblokApi };
 
+	let ideaStories: { data: { stories: ISbStoryData<IdeaStoryblok>[] } };
+	if (environment === 'server') {
+		ideaStories = await getStoryData({ slug: 'ideaStories', ...fetchProps });
+	} else {
+		ideaStories = await getStoryData({
+			params: {
+				filter_query: {
+					component: {
+						in: 'idea'
+					}
+				}
+			},
+			...fetchProps
+		});
+	}
+	const IDEA_PAGES = ideaStories.data.stories.map(({ slug }) => slug);
+
 	const {
 		data: { story: homeStoryData }
 	}: { data: { story: ISbStoryData<HomePageStoryblok> } } = await getStoryData({
@@ -83,9 +99,15 @@ export const fetchLayoutData = async ({
 	// fetching post stories by category
 	await Promise.all(
 		foldersData.categories.map(async (folder) => {
+			const isIdeaPage = IDEA_PAGES.includes(folder.slug);
+
 			const { data: categoryData } = await getStoryData({
 				slug: folder.slug,
-				startsWith: folder.slug !== 'anything-goes',
+				...(!isIdeaPage && {
+					params: {
+						starts_with: `${folder.slug}/`
+					}
+				}),
 				...fetchProps
 			});
 
@@ -100,11 +122,18 @@ export const fetchLayoutData = async ({
 
 	const categories = foldersData.categories
 		.filter(({ slug }) => !!categoriesStoriesObj[slug])
-		.map(({ slug, title: name }) => ({ name, slug }));
+		.map(({ slug, title: name, metaDescription }) => ({
+			type: IDEA_PAGES.includes(slug) ? 'idea' : 'post',
+			name,
+			slug,
+			metaDescription
+		}));
 
-	const categoriesStories = categories.map(({ name, slug }) => ({
+	const categoriesStories = categories.map(({ type, name, slug, metaDescription }) => ({
+		type,
 		name,
 		slug,
+		metaDescription,
 		data: categoriesStoriesObj[slug]
 	}));
 

@@ -9,6 +9,13 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>{$page.data.metaData?.title || 'Vandal Life'}</title>
+	{#if $page.data.metaData?.description}
+		<meta name="description" content={$page.data.metaData.description} />
+	{/if}
+</svelte:head>
+
 <div class="layout-wrapper">
 	<Header
 		links={[

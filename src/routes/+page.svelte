@@ -27,7 +27,7 @@
 
 {#if data.categoriesStories}
 	{@const allPostCategories = data.categoriesStories.filter(
-		(category) => category.data.stories[0].content.component !== 'idea'
+		(category) => category.data.stories[0].content.component === 'post'
 	)}
 
 	{#each data.story.content.listOfBlocks as blok}
@@ -39,7 +39,7 @@
 			{@const category = data.categoriesStories.find((category) => category.slug === blok.slug)}
 			{#if category}
 				<div use:storyblokEditable={blok}>
-					{#if category.data.stories[0].content.component !== 'idea'}
+					{#if category.data.stories[0].content.component === 'post'}
 						{@const index = allPostCategories.findIndex((category) => category.slug === blok.slug)}
 
 						<!-- post stories -->

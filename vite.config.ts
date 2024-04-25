@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import type { ISbStoryData } from '@storyblok/svelte';
 
 import { DATA_DIR, CATEGORIES_DIR } from './src/utils/constants';
-import type { CategoryNameStoryblok, HomePageStoryblok } from './component-types-sb';
+import type { CategoryNameStoryblok, HomePageStoryblok, IdeaStoryblok } from './component-types-sb';
 
 export default defineConfig(() => {
 	dotenv.config({ path: `.env` });
@@ -39,6 +39,20 @@ function getStories() {
 				fs.mkdirSync(CATEGORIES_DIR, { recursive: true });
 			}
 
+			// fetching idea content type stories
+			const ideaStoriesData = (await Storyblok.get('cdn/stories/', {
+				version: 'draft',
+				filter_query: {
+					component: {
+						in: 'idea'
+					}
+				}
+			})) as { data: { stories: ISbStoryData<IdeaStoryblok>[] } };
+			const ideaStoriesJson = JSON.stringify(ideaStoriesData, null, 2);
+			fs.writeFileSync(`${DATA_DIR}/ideaStories.json`, ideaStoriesJson);
+
+			const IDEA_PAGES = ideaStoriesData.data.stories.map(({ slug }) => slug);
+
 			// fetching home story
 			const homeData = (await Storyblok.get('cdn/stories/home', {
 				version: 'draft' // @TODO update when live and use other access key only for published
@@ -60,20 +74,29 @@ function getStories() {
 			// fetching post stories by category
 			foldersData.categories.forEach(async (folder) => {
 				// @TODO implement fetching all stories using per_page as default is 25, and max received in one call is 100
+				const isIdeaPage = IDEA_PAGES.includes(folder.slug);
+
 				const categoryData = await Storyblok.get(
-					`cdn/stories${folder.slug === 'anything-goes' ? '/anything-goes' : ''}`,
+					`cdn/stories${isIdeaPage ? `/${folder.slug}` : ''}`,
 					{
 						version: 'draft', // @TODO update when live and use other access key only for published
-						...(folder.slug !== 'anything-goes' && {
+						...(!isIdeaPage && {
 							starts_with: `${folder.slug}/`
 						})
 					}
 				);
 
-				// if folder (category) has stories - create file for category data
-				if (categoryData.data.stories?.length || categoryData.data.story?.content.ads?.length) {
+				// if folder (category) has stories (or idea story has ads) - create file for category data
+				if (
+					categoryData.data.stories?.length ||
+					categoryData.data.story.content.ads?.length // if ideaPage
+				) {
 					const categoryJson = JSON.stringify(categoryData, null, 2);
 					fs.writeFileSync(`${DATA_DIR}/${folder.slug}.json`, categoryJson);
+				} else {
+					throw new Error(
+						`Category ${folder.slug} referenced in homepage does not exist OR does not have any story PUBLISHED`
+					);
 				}
 			});
 		}
