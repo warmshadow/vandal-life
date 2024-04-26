@@ -41,11 +41,49 @@
 		currentStep,
 		maxSteps
 	)} * (-100% - var(--gap))))`;
+
+	let startX = 0;
+	let endX = 0;
+
+	const hasParentWithClassName = (element: EventTarget | null, className: string) => {
+		let currentElement = element as HTMLElement;
+
+		while (currentElement && currentElement !== document.body) {
+			if (currentElement.classList.contains(className)) {
+				return true;
+			}
+			currentElement = currentElement.parentElement as HTMLElement;
+		}
+
+		return false;
+	};
 </script>
 
 <svelte:window bind:innerWidth />
 
-<div class="container">
+<div
+	class="container"
+	on:touchstart={(event) => {
+		if (innerWidth <= 1180 && !hasParentWithClassName(event.target, 'category-item')) {
+			startX = event.touches[0].clientX;
+		}
+	}}
+	on:touchend={(event) => {
+		if (innerWidth <= 1180 && !hasParentWithClassName(event.target, 'category-item')) {
+			endX = event.changedTouches[0].clientX;
+			const deltaX = endX - startX;
+			const swipeThreshold = 50;
+
+			if (Math.abs(deltaX) > swipeThreshold) {
+				if (deltaX > 0) {
+					scrollStep('backward');
+				} else {
+					scrollStep('forward');
+				}
+			}
+		}
+	}}
+>
 	<div class="grid-container">
 		<div class="category-item" class:altOrder>
 			<CardBigText {...data.categoryCard} variant="secondary" isCentered />
