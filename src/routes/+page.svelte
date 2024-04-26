@@ -78,16 +78,20 @@
 									]
 								},
 								// slicing first 3 ads
-								cards: category.data.stories[0].content.ads.slice(0, 3).map((ad) => ({
-									title: ad.title,
-									link: {
-										label: 'Explore the idea',
-										onClick: () => {
-											modalContent = { title: ad.title, description: ad.content };
-											showModal = true;
+								cards: category.data.stories[0].content.listOfBlocks
+									.find(({ component }) => component === 'adList')
+									?.ads.slice(0, 5)
+									//@ts-ignore
+									.map((ad) => ({
+										title: ad.title,
+										link: {
+											label: 'Explore the idea',
+											onClick: () => {
+												modalContent = { title: ad.title, description: ad.content };
+												showModal = true;
+											}
 										}
-									}
-								})),
+									})),
 								categoryLink: `/${category.slug}`
 							}}
 							altOrder={false}

@@ -89,7 +89,7 @@ function getStories() {
 				// if folder (category) has stories (or idea story has ads) - create file for category data
 				if (
 					categoryData.data.stories?.length ||
-					categoryData.data.story?.content?.ads?.length // if ideaPage
+					categoryData.data.story?.content // if ideaPage
 				) {
 					const categoryJson = JSON.stringify(categoryData, null, 2);
 					fs.writeFileSync(`${DATA_DIR}/${folder.slug}.json`, categoryJson);

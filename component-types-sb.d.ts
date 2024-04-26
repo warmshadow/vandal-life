@@ -8,6 +8,13 @@ export interface AdStoryblok {
 	[k: string]: any;
 }
 
+export interface AdListStoryblok {
+	ads: AdStoryblok[];
+	_uid: string;
+	component: 'adList';
+	[k: string]: any;
+}
+
 export interface BigTextStoryblok {
 	leftText: string;
 	rightText?: string;
@@ -56,7 +63,7 @@ export interface HomePageStoryblok {
 }
 
 export interface IdeaStoryblok {
-	ads: AdStoryblok[];
+	listOfBlocks: (AdListStoryblok | MessageCardStoryblok)[];
 	_uid: string;
 	component: 'idea';
 	[k: string]: any;

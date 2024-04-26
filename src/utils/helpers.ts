@@ -115,7 +115,7 @@ export const fetchLayoutData = async ({
 			// if folder (category) has stories - add
 			if (categoryData.stories?.length) {
 				categoriesStoriesObj[folder.slug] = categoryData;
-			} else if (categoryData.story?.content?.ads?.length) {
+			} else if (categoryData.story?.content) {
 				categoriesStoriesObj[folder.slug] = { stories: [categoryData.story] };
 			}
 		})
