@@ -25,7 +25,9 @@ export interface BodyStoryblok {
 
 export interface CategoryNameStoryblok {
 	slug: string;
+	linkLabel: string;
 	title: string;
+	metaDescription: string;
 	_uid: string;
 	component: 'categoryName';
 	[k: string]: any;
@@ -46,6 +48,7 @@ export interface GalleryColumnStoryblok {
 }
 
 export interface HomePageStoryblok {
+	metaDescription: string;
 	listOfBlocks: (CategoryNameStoryblok | MessageCardStoryblok)[];
 	_uid: string;
 	component: 'homePage';
@@ -56,6 +59,14 @@ export interface IdeaStoryblok {
 	ads: AdStoryblok[];
 	_uid: string;
 	component: 'idea';
+	[k: string]: any;
+}
+
+export interface MessageCardStoryblok {
+	content: (BigTextStoryblok | SmallTextStoryblok)[];
+	variant?: 'primary' | 'secondary';
+	_uid: string;
+	component: 'messageCard';
 	[k: string]: any;
 }
 
@@ -70,23 +81,9 @@ export interface AssetStoryblok {
 	[k: string]: any;
 }
 
-export interface ImageStoryblok {
-	image?: AssetStoryblok;
-	_uid: string;
-	component: 'image';
-	[k: string]: any;
-}
-
-export interface MessageCardStoryblok {
-	content: (BigTextStoryblok | SmallTextStoryblok)[];
-	variant?: 'primary' | 'secondary';
-	_uid: string;
-	component: 'messageCard';
-	[k: string]: any;
-}
-
 export interface PostStoryblok {
-	featuredImage?: AssetStoryblok;
+	metaDescription?: string;
+	featuredImage: AssetStoryblok;
 	gallery?: GalleryStoryblok[];
 	title: string;
 	subtitle?: string;
@@ -98,7 +95,7 @@ export interface PostStoryblok {
 }
 
 export interface SmallTextStoryblok {
-	text?: string;
+	text: string;
 	_uid: string;
 	component: 'smallText';
 	[k: string]: any;

@@ -23,8 +23,8 @@
 			...data.homeStory.content.listOfBlocks
 				.filter((item) => item.component === 'categoryName')
 				.filter((item) => data.categories.some(({ slug }) => slug === item.slug))
-				.map(({ title: name, slug }) => ({
-					label: name.replaceAll(`\n`, ' '),
+				.map(({ linkLabel, slug }) => ({
+					label: linkLabel,
 					link: `/${slug}`,
 					isActive: $page.url.pathname.startsWith(`/${slug}`)
 				}))

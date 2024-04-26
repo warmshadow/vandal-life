@@ -24,7 +24,7 @@ export const getStoryData = async ({
 	path?: any;
 }) => {
 	if (storyblokApi) {
-		return await storyblokApi.get(`cdn/stories/${params?.startsWith ? '' : slug}`, {
+		return await storyblokApi.get(`cdn/stories/${params?.starts_with || !slug ? '' : slug}`, {
 			version: 'draft',
 			...params
 		});
@@ -43,6 +43,7 @@ interface CategoriesStories {
 	stories: ISbStoryData<PostStoryblok | IdeaStoryblok>[];
 }
 
+// @TODO add catch for errors
 export const fetchLayoutData = async ({
 	path,
 	fsp,
