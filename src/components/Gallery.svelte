@@ -1,12 +1,26 @@
 <script lang="ts">
-	export let images: { src: string; alt?: string }[][];
+	import { storyblokEditable } from '@storyblok/svelte';
+	import type { GalleryStoryblok, ImageStoryblok } from '../../component-types-sb';
+
+	export let images: ImageStoryblok[][];
+	export let rowGap: GalleryStoryblok['rowGap'];
+	export let columnGap: GalleryStoryblok['columnGap'];
 </script>
 
-<div class="gallery">
+<div class="gallery" style={`row-gap: ${rowGap ?? 0}vw; column-gap: ${columnGap ?? 0}vw;`}>
 	{#each images as columnOfImages}
-		<div class={`column cols-${images.length}`}>
+		<div class={`column cols-${images.length}`} style={`row-gap: ${rowGap ?? 0}vw;`}>
 			{#each columnOfImages as image}
-				<img src={image.src} alt={image.alt} />
+				<img
+					src={image.src}
+					alt={image.alt}
+					style={`padding-left: ${image.paddingLeft ?? 0}%; padding-top: ${
+						image.paddingTop ?? 0
+					}%; padding-right: ${image.paddingRight ?? 0}%; padding-bottom: ${
+						image.paddingBottom ?? 0
+					}%`}
+					use:storyblokEditable={image}
+				/>
 			{/each}
 		</div>
 	{/each}
@@ -15,46 +29,24 @@
 <style>
 	.gallery {
 		display: flex;
-		flex-wrap: wrap;
-		padding: 0 4px;
 	}
 
 	.column {
-		padding: 0 4px;
-	}
-
-	.cols-4 {
-		flex: 25%;
-		max-width: 25%;
-	}
-
-	.cols-3 {
-		flex: 33.3%;
-		max-width: 33.3%;
-	}
-
-	.cols-2 {
-		flex: 50%;
-		max-width: 50%;
-	}
-
-	.column img {
-		margin-top: 8px;
-		vertical-align: middle;
+		display: flex;
+		flex-direction: column;
 		width: 100%;
 	}
 
-	@media screen and (max-width: 1000px) {
-		.column {
-			flex: 50%;
-			max-width: 50%;
-		}
+	.column img {
+		width: 100%;
 	}
-
 	@media screen and (max-width: 500px) {
-		.column {
-			flex: 100%;
-			max-width: 100%;
+		.gallery {
+			flex-direction: column;
+		}
+
+		.column img {
+			padding: 0 !important;
 		}
 	}
 </style>

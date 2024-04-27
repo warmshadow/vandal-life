@@ -1,19 +1,19 @@
-<script>
-	// @ts-nocheck
+<script lang="ts">
 	import { marked } from 'marked';
 
-	import { storyblokEditable } from '@storyblok/svelte';
+	import { type ISbStoryData, storyblokEditable } from '@storyblok/svelte';
 
 	import Text from '$lib/Text.svelte';
 	import Gallery from './Gallery.svelte';
 
 	import { optimizeImage } from '../utils/image-helpers';
+	import type { PostStoryblok } from '../../component-types-sb';
 
-	export let blok;
-	export let date;
+	export let blok: ISbStoryData<PostStoryblok>['content'];
+	export let date: string;
 
-	const formatDate = (inputDate) => {
-		const options = { year: 'numeric', month: 'long', day: 'numeric' };
+	const formatDate = (inputDate: string) => {
+		const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 		const date = new Date(inputDate);
 		return date.toLocaleDateString('en-US', options);
 	};
@@ -22,7 +22,7 @@
 {#key blok}
 	<div use:storyblokEditable={blok} class="container">
 		{#if blok?.featuredImage?.filename}
-			<div style="margin-bottom: 40px;">
+			<div class="featured-image-wrapper">
 				<picture>
 					<source
 						media="(max-width: 699px)"
@@ -35,7 +35,7 @@
 					<!-- TODO pass alt from asset -->
 					<img
 						src={optimizeImage(blok.featuredImage, '2000x660')}
-						alt="featured"
+						alt={blok.featuredImage.alt}
 						class="featured-image"
 					/>
 				</picture>
@@ -64,51 +64,58 @@
 				</div>
 			{/if}
 
-			{#if !!blok.content.length}
-				<div class="body-wrapper">
-					{#each blok.content as content}
-						{#if content.component === 'body'}
+			{#if !!blok.content?.length}
+				{#each blok.content as content}
+					{#if content.component === 'body'}
+						<div class="body-wrapper">
 							<Text tag="p">{@html marked(content.text)}</Text>
-						{/if}
-					{/each}
-				</div>
+						</div>
+					{/if}
+
+					{#if content.component === 'gallery'}
+						<div class="gallery-wrapper" use:storyblokEditable={content}>
+							<Gallery
+								images={content.columns.map(({ images }) =>
+									images.map((imageBlok) => ({
+										...imageBlok,
+										src:
+											optimizeImage(
+												imageBlok.image,
+												content.columns.length > 1 ? '724x0' : '1448x0'
+											) ?? '',
+										alt: imageBlok.image.alt
+									}))
+								)}
+								rowGap={content.rowGap}
+								columnGap={content.columnGap}
+							/>
+						</div>
+					{/if}
+				{/each}
 			{/if}
 		</div>
-
-		{#if blok.gallery?.length}
-			<div class="gallery-wrapper">
-				<Gallery
-					images={blok.gallery[0]?.columns?.map(({ images }) =>
-						images.map(({ image }) => ({
-							src: image
-								? optimizeImage(image, blok.gallery[0].columns.length > 1 ? '700x0' : '1400x0')
-								: '',
-							alt: image.alt
-						}))
-					)}
-				/>
-			</div>
-		{/if}
 	</div>
 {/key}
 
 <style>
+	.featured-image-wrapper {
+		margin-bottom: 40px;
+	}
+
 	.featured-image {
 		width: 100%;
 		max-width: 100%;
 		border-radius: 12px;
 	}
 
-	.title-wrapper {
-		margin-bottom: 24px;
+	.subtitle-wrapper {
+		margin-top: 24px;
 	}
 
-	.authors-wrapper,
-	.body-wrapper {
+	.authors-and-content {
 		margin-top: 80px;
 	}
 
-	/* @TODO could affect future gallery, rethink selector */
 	.body-wrapper :global(img) {
 		max-width: 100%;
 	}
@@ -117,6 +124,17 @@
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+		margin-bottom: 80px;
+	}
+
+	.body-wrapper {
+		margin-left: auto;
+	}
+
+	.gallery-wrapper {
+		width: 100%;
+		margin-top: 80px;
+		margin-bottom: 80px;
 	}
 
 	@media (min-width: 700px) {
@@ -134,13 +152,8 @@
 	}
 
 	@media (min-width: 1728px) {
-		.title-wrapper {
-			margin-bottom: 40px;
-		}
-
-		.authors-wrapper,
-		.body-wrapper {
-			margin-top: 104px;
+		.subtitle-wrapper {
+			margin-top: 40px;
 		}
 
 		.container {
@@ -159,10 +172,13 @@
 			display: flex;
 			justify-content: space-between;
 			width: 100%;
-		}
-	}
+			flex-wrap: wrap;
 
-	.gallery-wrapper {
-		margin-top: 24px;
+			margin-top: 104px;
+		}
+
+		.authors-wrapper {
+			margin-bottom: 0;
+		}
 	}
 </style>

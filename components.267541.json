@@ -106,11 +106,12 @@
       "name": "body",
       "display_name": null,
       "created_at": "2024-03-16T13:07:36.471Z",
-      "updated_at": "2024-03-16T13:08:10.648Z",
+      "updated_at": "2024-04-27T18:29:26.226Z",
       "id": 5506579,
       "schema": {
         "text": {
-          "type": "markdown"
+          "type": "markdown",
+          "required": true
         }
       },
       "image": null,
@@ -178,7 +179,7 @@
       "name": "gallery",
       "display_name": null,
       "created_at": "2024-01-09T19:40:07.818Z",
-      "updated_at": "2024-01-09T19:59:01.641Z",
+      "updated_at": "2024-04-27T17:10:28.523Z",
       "id": 5143037,
       "schema": {
         "columns": {
@@ -189,9 +190,28 @@
             "galleryColumn"
           ],
           "component_group_whitelist": [],
-          "minimum": 1,
-          "key": "column",
-          "pos": 0
+          "minimum": 2,
+          "key": "columns",
+          "pos": 0,
+          "maximum": 2,
+          "required": true
+        },
+        "rowGap": {
+          "type": "number",
+          "min_value": 0,
+          "max_value": 5,
+          "default_value": "",
+          "description": "vw. 0 - 5",
+          "key": "rowGap",
+          "pos": 1
+        },
+        "columnGap": {
+          "type": "number",
+          "min_value": 0,
+          "max_value": 5,
+          "description": "vw. 0 - 5",
+          "key": "colGap",
+          "pos": 2
         }
       },
       "image": null,
@@ -214,12 +234,12 @@
       "name": "galleryColumn",
       "display_name": null,
       "created_at": "2024-01-09T19:40:59.151Z",
-      "updated_at": "2024-01-09T19:42:58.771Z",
+      "updated_at": "2024-04-27T18:00:41.298Z",
       "id": 5143038,
       "schema": {
         "images": {
           "type": "bloks",
-          "required": false,
+          "required": true,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -324,6 +344,53 @@
       "component_group_name": "Ideas"
     },
     {
+      "name": "image",
+      "display_name": null,
+      "created_at": "2024-04-27T13:44:04.008Z",
+      "updated_at": "2024-04-27T17:12:32.405Z",
+      "id": 5720597,
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "required": true
+        },
+        "paddingLeft": {
+          "type": "number",
+          "min_value": 0
+        },
+        "paddingTop": {
+          "type": "number",
+          "min_value": 0
+        },
+        "paddingRight": {
+          "type": "number",
+          "min_value": 0
+        },
+        "paddingBottom": {
+          "type": "number",
+          "min_value": 0
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "image",
+      "component_group_uuid": "a3fe691e-dd0a-4269-bec8-8ca7bd1117b8",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Post"
+    },
+    {
       "name": "messageCard",
       "display_name": null,
       "created_at": "2024-01-05T21:21:39.596Z",
@@ -382,7 +449,7 @@
       "name": "post",
       "display_name": null,
       "created_at": "2023-12-17T19:12:25.242Z",
-      "updated_at": "2024-04-06T22:21:08.724Z",
+      "updated_at": "2024-04-27T17:12:10.972Z",
       "id": 5051907,
       "schema": {
         "metaDescription": {
@@ -400,18 +467,6 @@
           "required": true,
           "key": "featuredImage",
           "description": "Main top image. If hidden only shown for post card and not in the post itself"
-        },
-        "gallery": {
-          "type": "bloks",
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "gallery"
-          ],
-          "component_group_whitelist": [],
-          "key": "gallery",
-          "pos": 2
         },
         "title": {
           "type": "text",
@@ -434,10 +489,12 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
-            "body"
+            "body",
+            "gallery"
           ],
           "key": "content2",
-          "pos": 6
+          "pos": 6,
+          "required": true
         }
       },
       "image": null,
