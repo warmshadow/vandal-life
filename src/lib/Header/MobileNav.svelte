@@ -81,9 +81,15 @@
 
 	.navigation-card-wrapper {
 		position: absolute;
-		top: 101%;
+		top: 100%;
 		left: 0;
 
 		width: 100%;
+	}
+
+	@media (min-width: 1180px) {
+		.navigation-card-wrapper {
+			top: 101%;
+		}
 	}
 </style>
