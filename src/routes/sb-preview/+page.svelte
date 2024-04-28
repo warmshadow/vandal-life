@@ -26,13 +26,10 @@
 			);
 		});
 	} else if (data.homeStoryClient) {
-		console.log('homeStoryYes');
 		onMount(() => {
-			console.log('onMountYes');
 			useStoryblokBridge<HomePageStoryblok>(
 				data.homeStoryClient!.id,
-				(newStory) => (data.homeStoryClient = newStory),
-				{ customParent: 'https://hello-world-wispy-brook-580f.vandallifeweb.workers.dev' }
+				(newStory) => (data.homeStoryClient = newStory)
 			);
 		});
 	}
