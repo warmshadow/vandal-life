@@ -18,6 +18,10 @@ export async function load({ url: { pathname }, params }) {
 
 		const story = categoryStoryData.stories.find(({ full_slug }) => `/${full_slug}` === pathname);
 
+		const bodyText = story?.content.content
+			?.find(({ component }) => component === 'body')
+			?.text?.trim();
+
 		if (story) {
 			return {
 				story: categoryStoryData.stories.find(({ full_slug }) => `/${full_slug}` === pathname),
@@ -26,11 +30,8 @@ export async function load({ url: { pathname }, params }) {
 					description:
 						story.content.metaDescription?.trim() ||
 						story.content.subtitle?.trim() ||
-						shortenString(
-							story.content.content?.find(({ component }) => component === 'body')?.text || '',
-							160
-						)
-				}
+						(bodyText ? shortenString(bodyText, 160) : undefined)
+				} as { title: string; description?: string }
 			};
 		} else {
 			throw new Error('No story for this page');
