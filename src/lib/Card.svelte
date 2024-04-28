@@ -16,7 +16,9 @@
 	{/if}
 	<div class="content">
 		<div class="text-block">
-			<Text tag="h6" type="bold">{shortenString(title, 115)}</Text>
+			{#if !!title}
+				<Text tag="h6" type="bold">{shortenString(title, 115)}</Text>
+			{/if}
 			{#if !!description}
 				<Text tag="p">{shortenString(description, 100)}</Text>
 			{/if}

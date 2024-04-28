@@ -4,6 +4,7 @@ import { browser } from '$app/environment';
 
 import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
+import Idea from '../components/Idea.svelte';
 
 import { fetchLayoutData } from '../utils/helpers';
 
@@ -13,7 +14,8 @@ export async function load({ url: { pathname }, url, data }) {
 		use: [apiPlugin],
 		components: {
 			post: Post,
-			messageCard: CardBigText
+			messageCard: CardBigText,
+			idea: Idea
 		}
 	});
 	const storyblokApi = useStoryblokApi();

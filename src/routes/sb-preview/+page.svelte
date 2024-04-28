@@ -4,7 +4,6 @@
 	import { storyblokEditable } from '@storyblok/svelte';
 
 	import CategorySection from '$lib/sections/CategorySection.svelte';
-	import ArticlesSection from '$lib/sections/ArticlesSection.svelte';
 	import Modal from '$lib/Modal/Modal.svelte';
 	import ModalContent from '$lib/Modal/ModalContent.svelte';
 
@@ -55,27 +54,7 @@
 {#if !!data.postStory}
 	<StoryblokComponent blok={data.postStory.content} date={data.postStory.published_at} />
 {:else if !!data.ideaStory}
-	{#each data.ideaStory.content.listOfBlocks as blok}
-		{#if blok.component === 'messageCard'}
-			<StoryblokComponent {blok} />
-		{/if}
-
-		{#if blok.component === 'adList'}
-			<ArticlesSection
-				data={blok.ads.map((ad) => ({
-					title: ad.title,
-					link: {
-						label: 'Explore the idea',
-						onClick: () => {
-							modalContent = { title: ad.title, description: ad.content };
-							showModal = true;
-						}
-					},
-					_editable: ad._editable // pasing so storyblokEditable works
-				}))}
-			/>
-		{/if}
-	{/each}
+	<StoryblokComponent blok={data.ideaStory.content} />
 {:else if !!data.homeStory}
 	{#if data.categoriesStories}
 		{@const allPostCategories = data.categoriesStories.filter(
