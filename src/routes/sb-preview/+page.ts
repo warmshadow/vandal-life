@@ -23,13 +23,13 @@ export async function load({ url, parent }) {
 				});
 
 				if (story.content.component === 'idea') {
-					return { ...data, ideaStory: story as ISbStoryData<IdeaStoryblok> };
+					return { ...data, ideaStoryClient: story as ISbStoryData<IdeaStoryblok> };
 				} else if (story.content.component === 'post') {
-					return { ...data, postStory: story as ISbStoryData<PostStoryblok> };
+					return { ...data, postStoryClient: story as ISbStoryData<PostStoryblok> };
 				} else if (story.content.component === 'homePage') {
 					return {
 						...data,
-						homeStory: story as ISbStoryData<HomePageStoryblok>
+						homeStoryClient: story as ISbStoryData<HomePageStoryblok>
 					};
 				}
 			} catch {

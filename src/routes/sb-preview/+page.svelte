@@ -11,25 +11,28 @@
 	export let data;
 
 	// for storyblok live editor
-	if (data.ideaStory) {
+	if (data.ideaStoryClient) {
 		onMount(() => {
 			useStoryblokBridge<IdeaStoryblok>(
-				data.ideaStory!.id,
-				(newStory) => (data.ideaStory = newStory)
+				data.ideaStoryClient!.id,
+				(newStory) => (data.ideaStoryClient = newStory)
 			);
 		});
-	} else if (data.postStory) {
+	} else if (data.postStoryClient) {
 		onMount(() => {
 			useStoryblokBridge<PostStoryblok>(
-				data.postStory!.id,
-				(newStory) => (data.postStory = newStory)
+				data.postStoryClient!.id,
+				(newStory) => (data.postStoryClient = newStory)
 			);
 		});
-	} else if (data.homeStory) {
+	} else if (data.homeStoryClient) {
+		console.log('homeStoryYes');
 		onMount(() => {
+			console.log('onMountYes');
 			useStoryblokBridge<HomePageStoryblok>(
-				data.homeStory!.id,
-				(newStory) => (data.homeStory = newStory)
+				data.homeStoryClient!.id,
+				(newStory) => (data.homeStoryClient = newStory),
+				{ customParent: 'https://hello-world-wispy-brook-580f.vandallifeweb.workers.dev' }
 			);
 		});
 	}
@@ -40,10 +43,16 @@
 	<meta name="robots" content="noindex nofollow" />
 </svelte:head>
 
-{#if !!data.postStory}
-	<StoryblokComponent blok={data.postStory.content} date={data.postStory.published_at} />
-{:else if !!data.ideaStory}
-	<StoryblokComponent blok={data.ideaStory.content} />
-{:else if !!data.homeStory}
-	<StoryblokComponent blok={data.homeStory.content} categoriesStories={data.categoriesStories} />
+{#if !!data.postStoryClient}
+	<StoryblokComponent
+		blok={data.postStoryClient.content}
+		date={data.postStoryClient.published_at}
+	/>
+{:else if !!data.ideaStoryClient}
+	<StoryblokComponent blok={data.ideaStoryClient.content} />
+{:else if !!data.homeStoryClient}
+	<StoryblokComponent
+		blok={data.homeStoryClient.content}
+		categoriesStories={data.categoriesStories}
+	/>
 {/if}
