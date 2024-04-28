@@ -5,6 +5,7 @@ import { browser } from '$app/environment';
 import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 import Idea from '../components/Idea.svelte';
+import HomePage from '../components/HomePage.svelte';
 
 import { fetchLayoutData } from '../utils/helpers';
 
@@ -13,9 +14,10 @@ export async function load({ url: { pathname }, url, data }) {
 		accessToken: PUBLIC_STORYBLOK_TOKEN,
 		use: [apiPlugin],
 		components: {
+			homePage: HomePage,
 			post: Post,
-			messageCard: CardBigText,
-			idea: Idea
+			idea: Idea,
+			messageCard: CardBigText
 		}
 	});
 	const storyblokApi = useStoryblokApi();

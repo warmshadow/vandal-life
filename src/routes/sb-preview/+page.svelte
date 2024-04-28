@@ -1,14 +1,6 @@
 <script lang="ts">
-	import { type ComponentProps, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
-	import { storyblokEditable } from '@storyblok/svelte';
-
-	import CategorySection from '$lib/sections/CategorySection.svelte';
-	import Modal from '$lib/Modal/Modal.svelte';
-	import ModalContent from '$lib/Modal/ModalContent.svelte';
-
-	import placeholder from '$lib/placeholder.png';
-	import { optimizeImage } from '../../utils/image-helpers';
 
 	import type {
 		IdeaStoryblok,
@@ -17,9 +9,6 @@
 	} from '../../../component-types-sb'; // @TODO better import?
 
 	export let data;
-
-	let showModal = false;
-	let modalContent: ComponentProps<ModalContent> = { title: '', description: undefined };
 
 	// for storyblok live editor
 	if (data.ideaStory) {
@@ -56,87 +45,5 @@
 {:else if !!data.ideaStory}
 	<StoryblokComponent blok={data.ideaStory.content} />
 {:else if !!data.homeStory}
-	{#if data.categoriesStories}
-		{@const allPostCategories = data.categoriesStories.filter(
-			(category) => category.data.stories[0].content.component === 'post'
-		)}
-
-		{#each data.homeStory.content.listOfBlocks as blok}
-			{#if blok.component === 'messageCard'}
-				<StoryblokComponent {blok} />
-			{/if}
-
-			{#if blok.component === 'categoryName'}
-				{@const category = data.categoriesStories.find((category) => category.slug === blok.slug)}
-				{#if category}
-					<div use:storyblokEditable={blok}>
-						{#if category.data.stories[0].content.component === 'post'}
-							{@const index = allPostCategories.findIndex(
-								(category) => category.slug === blok.slug
-							)}
-
-							<!-- post stories -->
-							<CategorySection
-								data={{
-									categoryCard: {
-										content: [
-											{
-												component: 'bigText',
-												leftText: blok.title
-											}
-										]
-									},
-									// slicing first three posts
-									cards: category.data.stories.slice(0, 3).map((story) => ({
-										// @TODO handle without this placeholder
-										src: optimizeImage(story.content.featuredImage, '1068x392') ?? placeholder,
-										title: story.content.title,
-										description: story.content.subtitle,
-										link: { to: `/${story.full_slug}` }
-									})),
-									categoryLink: `/${category.slug}`
-								}}
-								altOrder={!(index % 2)}
-							/>
-						{:else}
-							<!-- idea story -->
-							<CategorySection
-								data={{
-									categoryCard: {
-										content: [
-											{
-												component: 'bigText',
-												leftText: blok.title
-											}
-										]
-									},
-									// slicing first 3 ads
-									cards: category.data.stories[0].content.listOfBlocks
-										.find(({ component }) => component === 'adList')
-										?.ads.slice(0, 5)
-										//@ts-ignore
-										.map((ad) => ({
-											title: ad.title,
-											link: {
-												label: 'Explore the idea',
-												onClick: () => {
-													modalContent = { title: ad.title, description: ad.content };
-													showModal = true;
-												}
-											}
-										})),
-									categoryLink: `/${category.slug}`
-								}}
-								altOrder={false}
-							/>
-						{/if}
-					</div>
-				{/if}
-			{/if}
-		{/each}
-	{/if}
+	<StoryblokComponent blok={data.homeStory.content} categoriesStories={data.categoriesStories} />
 {/if}
-
-<Modal bind:showModal>
-	<ModalContent {...modalContent} />
-</Modal>
