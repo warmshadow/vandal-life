@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { marked } from 'marked';
 
-	import { type ISbStoryData, storyblokEditable } from '@storyblok/svelte';
+	import { type ISbStoryData, storyblokEditable, StoryblokComponent } from '@storyblok/svelte';
 
 	import Text from '$lib/Text.svelte';
 	import Gallery from './Gallery.svelte';
@@ -91,6 +91,12 @@
 							/>
 						</div>
 					{/if}
+
+					{#if content.component === 'slideGallery'}
+						<div class="slide-gallery-wrapper">
+							<StoryblokComponent blok={content} />
+						</div>
+					{/if}
 				{/each}
 			{/if}
 		</div>
@@ -135,6 +141,12 @@
 		width: 100%;
 		margin-top: 80px;
 		margin-bottom: 80px;
+	}
+
+	.slide-gallery-wrapper {
+		width: 100%;
+		padding-top: 16px;
+		padding-bottom: 40px;
 	}
 
 	@media (min-width: 700px) {

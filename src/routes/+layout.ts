@@ -6,6 +6,7 @@ import CardBigText from '../components/CardBigText.svelte';
 import Post from '../components/Post.svelte';
 import Idea from '../components/Idea.svelte';
 import HomePage from '../components/HomePage.svelte';
+import SlideGallery from '../components/SlideGallery.svelte';
 
 import { fetchLayoutData } from '../utils/helpers';
 
@@ -17,7 +18,8 @@ export async function load({ url: { pathname }, url, data }) {
 			homePage: HomePage,
 			post: Post,
 			idea: Idea,
-			messageCard: CardBigText
+			messageCard: CardBigText,
+			slideGallery: SlideGallery
 		}
 	});
 	const storyblokApi = useStoryblokApi();
