@@ -77,7 +77,7 @@
 								// slicing first 3 ads
 								cards: category.data.stories[0].content.listOfBlocks
 									.find(({ component }) => component === 'adList')
-									?.ads.slice(0, 5)
+									?.ads.slice(0, 3)
 									//@ts-ignore
 									.map((ad) => ({
 										title: ad.title,
