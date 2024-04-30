@@ -5,12 +5,14 @@
 
 	import Text from '$lib/Text.svelte';
 	import Gallery from './Gallery.svelte';
+	import ReadNext from '$lib/ReadNext.svelte';
 
 	import { optimizeImage } from '../utils/image-helpers';
 	import type { PostStoryblok } from '../../component-types-sb';
 
 	export let blok: ISbStoryData<PostStoryblok>['content'];
 	export let date: string;
+	export let nextStories: ISbStoryData<PostStoryblok>[];
 
 	const formatDate = (inputDate: string) => {
 		const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -101,6 +103,16 @@
 			{/if}
 		</div>
 	</div>
+	{#if nextStories?.length}
+		<ReadNext
+			cards={nextStories.map((story) => ({
+				src: optimizeImage(story.content.featuredImage, '1068x392') ?? undefined,
+				title: story.content.title,
+				description: story.content.subtitle,
+				link: { to: `/${story.full_slug}` }
+			}))}
+		/>
+	{/if}
 {/key}
 
 <style>

@@ -15,5 +15,9 @@
 </script>
 
 {#if data.story}
-	<StoryblokComponent blok={data.story.content} date={data.story.published_at} />
+	<StoryblokComponent
+		blok={data.story.content}
+		date={data.story.published_at}
+		nextStories={data.nextStories}
+	/>
 {/if}

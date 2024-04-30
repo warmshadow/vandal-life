@@ -1,6 +1,8 @@
 import { promises as fsp } from 'fs';
 import path from 'path';
 
+import { dev } from '$app/environment';
+
 import type { ISbStoryData } from '@storyblok/svelte';
 import type { PostStoryblok } from '../../../../component-types-sb';
 
@@ -25,6 +27,9 @@ export async function load({ url: { pathname }, params }) {
 		if (story) {
 			return {
 				story: categoryStoryData.stories.find(({ full_slug }) => `/${full_slug}` === pathname),
+				nextStories: categoryStoryData.stories
+					.filter(({ full_slug }) => `/${full_slug}` !== pathname)
+					.slice(0, 6),
 				metaData: {
 					title: story.content.title,
 					description:
@@ -33,11 +38,10 @@ export async function load({ url: { pathname }, params }) {
 						(bodyText ? shortenString(bodyText, 160) : undefined)
 				} as { title: string; description?: string }
 			};
-		} else {
-			throw new Error('No story for this page');
+		} else if (!dev) {
+			throw new Error(`No story for ${pathname} page`);
 		}
 	} catch (error) {
-		console.error(`Error reading or parsing JSON`, error);
-		throw error;
+		throw new Error(`Error reading or parsing JSON. ${error}`);
 	}
 }
