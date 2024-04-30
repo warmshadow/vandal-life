@@ -8,7 +8,6 @@
 	import Modal from '$lib/Modal/Modal.svelte';
 	import ModalContent from '$lib/Modal/ModalContent.svelte';
 
-	import placeholder from '$lib/placeholder.png';
 	import { optimizeImage } from '../utils/image-helpers';
 
 	import type { HomePageStoryblok } from '../../component-types-sb'; // @TODO better import?
@@ -52,8 +51,7 @@
 								},
 								// slicing first three posts
 								cards: category.data.stories.slice(0, 3).map((story) => ({
-									// @TODO handle without this placeholder
-									src: optimizeImage(story.content.featuredImage, '1068x392') ?? placeholder,
+									src: optimizeImage(story.content.featuredImage, '1068x392') ?? undefined,
 									title: story.content.title,
 									description: story.content.subtitle,
 									link: { to: `/${story.full_slug}` }

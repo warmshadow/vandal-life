@@ -4,7 +4,6 @@
 	import CardBigText from '$lib/CardBigText.svelte';
 	import ArticlesSection from '$lib/sections/ArticlesSection.svelte';
 
-	import placeholder from '$lib/placeholder.png';
 	import { optimizeImage } from '../../utils/image-helpers';
 
 	export let data;
@@ -15,7 +14,7 @@
 	<ArticlesSection
 		data={data.postStories.data.stories.map((story) => ({
 			// @TODO handle without this placeholder
-			src: optimizeImage(story.content.featuredImage, '1068x392') ?? placeholder,
+			src: optimizeImage(story.content.featuredImage, '1068x392') ?? undefined,
 			title: story.content.title,
 			description: story.content.subtitle,
 			link: { to: `/${story.full_slug}` }
