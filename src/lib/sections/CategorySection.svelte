@@ -154,7 +154,7 @@
 	}
 	@media (min-width: 1181px) {
 		.grid-container {
-			grid-template-rows: repeat(2, 1fr);
+			grid-template-rows: repeat(auto-fill, 1fr);
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		}
 	}

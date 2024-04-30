@@ -27,8 +27,9 @@ export async function load({ url: { pathname }, url, data }) {
 	const extraData = {
 		storyblokApi: storyblokApi,
 		currentCategory:
-			data.categories.find(({ slug }) => `${pathname}/`.startsWith(`/${slug}/`))?.name ||
-			'vandal life'
+			data.homeStory.content.listOfBlocks
+				.filter((item) => item.component === 'categoryName')
+				.find((item) => `${pathname}/`.startsWith(`/${item.slug}/`))?.linkLabel || 'vandal life'
 	};
 
 	if (browser) {
