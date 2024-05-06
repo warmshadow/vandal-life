@@ -10,24 +10,42 @@
 	export let link: ComponentProps<Link>;
 </script>
 
-<div class="container">
-	{#if !!src}
-		<div class="img-container" style="background-image: url('{src}')" />
-	{/if}
-	<div class="content">
-		<div class="text-block">
-			{#if !!title}
-				<Text tag="h6" type="bold">{shortenString(title, 115)}</Text>
-			{/if}
-			{#if !!description}
-				<Text tag="p">{shortenString(description, 100)}</Text>
-			{/if}
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<svelte:element
+	this={link.to ? 'a' : 'div'}
+	class="link-wrapper"
+	href={link.to}
+	on:click={link.onClick}
+>
+	<div class="container">
+		{#if !!src}
+			<div class="img-container" style="background-image: url('{src}')" />
+		{/if}
+		<div class="content">
+			<div class="text-block">
+				{#if !!title}
+					<Text tag="h6" type="bold">{shortenString(title, 115)}</Text>
+				{/if}
+				{#if !!description}
+					<Text tag="p">{shortenString(description, 100)}</Text>
+				{/if}
+			</div>
+			<!-- overriding to and onClick prop here to make link a div, as that logic is used on card wrapper -->
+			<Link variant="animated-line" {...link} to={undefined} onClick={undefined} />
 		</div>
-		<Link variant="animated-line" {...link} />
 	</div>
-</div>
+</svelte:element>
 
 <style>
+	.link-wrapper {
+		height: 100%;
+		cursor: pointer;
+	}
+	.link-wrapper:hover :global(.link.animated-line::after) {
+		transform: scaleX(0);
+		transform-origin: bottom left;
+	}
+
 	.container {
 		max-width: 100%;
 		padding: 16px;

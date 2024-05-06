@@ -13,7 +13,6 @@
 	<CardBigText content={[{ component: 'bigText', leftText: data.postStories.name }]} />
 	<ArticlesSection
 		data={data.postStories.data.stories.map((story) => ({
-			// @TODO handle without this placeholder
 			src: optimizeImage(story.content.featuredImage, '1068x392') ?? undefined,
 			title: story.content.title,
 			description: story.content.subtitle,

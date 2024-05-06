@@ -38,7 +38,7 @@
 		display: flex;
 		flex-direction: column;
 
-		border-radius: 12px;
+		border-radius: 20px;
 		background-color: var(--primary);
 
 		height: 100%;

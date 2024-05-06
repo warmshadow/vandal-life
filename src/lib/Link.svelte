@@ -12,6 +12,8 @@
 	let tag = 'a';
 	$: if (!to && !!onClick) {
 		tag = 'button';
+	} else if (!to && !onClick) {
+		tag = 'div';
 	}
 	$: hrefProp = tag === 'a' ? { href: to } : {}; // to bypass typing error when passing href directly
 </script>
